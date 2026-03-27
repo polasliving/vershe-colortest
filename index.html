@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vershe 色彩即詩 · 品牌命定色測驗</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/*
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  VERSHE 色彩即詩 · Pola's Living 色彩命定系統 v4.0                              ║
+  ║  49色 × 7色群 × 感知層-時間感-情境詩 三軸命名法             ║
+  ║  © Vershe 色彩即詩 · Pola's Living  polasliving@gmail.com                     ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+  七大色群架構：
+  G1 初光群  SHOKO   — 晨粉·柔感·溫柔共鳴   7色
+  G2 苔語群  TAIGO   — 苔綠·自然·生命底蘊   7色
+  G3 塵路群  JINRO   — 大地·踏實·歲月質感   7色
+  G4 遠岫群  ENSHU   — 藍灰·冷靜·知性深度   7色
+  G5 稻金群  TŌKIN   — 暖金·活力·成就光芒   7色
+  G6 墨語群  BOKUGO  — 深沉·精品·跨時代質感  7色
+  G7 霞翳群  KAEI    — 過渡·詩性·無法分類之美 7色
+*/
+:root {
+  /* G1 初光群 — 晨粉系 */
+  --g1-1: #ffcbc3; /* 初醒  satsuki    晨光初觸皮膚的溫度 */
+  --g1-2: #f0a89e; /* 餘暉  tasogare   光將落未落的橘粉邊境 */
+  --g1-3: #ffe8e5; /* 霞隱  kasagake   霞光散入雲後幾乎不可見的白 */
+  --g1-4: #ffd6cf; /* 曉染  akesome    天剛亮，雲朵被染成的顏色 */
+  --g1-5: #e8948c; /* 紅潮  beniushio  臉頰一陣熱後浮起的紅 */
+  --g1-6: #fce4e0; /* 春氣  shunki     空氣裡有花香但還找不到花 */
+  --g1-7: #c97d74; /* 暮染  akanefu    夏末茜草根部才有的深紅 */
+
+  /* G2 苔語群 — 自然綠系 */
+  --g2-1: #7a8c78; /* 苔歲  taioku     濕石上的苔記得上次的雨 */
+  --g2-2: #9aaa96; /* 煙綠  kemuri-ry  山嵐剛散，樹梢浮出的灰綠 */
+  --g2-3: #5e7060; /* 林深  hayashi    走進去後才發現有多綠的那個深 */
+  --g2-4: #b8c8b4; /* 初葉  ui-ha      春天第一片葉子的顏色 */
+  --g2-5: #4a5e4c; /* 蕨影  warabi     背陰處的蕨類，沉而不暗 */
+  --g2-6: #d2ddd0; /* 遠草  tōkusa     遠看是灰，走近才知是草 */
+  --g2-7: #3d4e3f; /* 夜林  yobayashi  林中深夜，偶有螢光 */
+
+  /* G3 塵路群 — 大地暖褐系 */
+  --g3-1: #c4a882; /* 礫跡  michikori  走過無數人的石板路積下的色 */
+  --g3-2: #f5f0e8; /* 紙間  kamima     舊書攤上一頁未讀的暖白 */
+  --g3-3: #d4b898; /* 砂印  sunai      海灘上腳印留下的淡褐 */
+  --g3-4: #a08060; /* 木暮  furuki     老屋樑柱被時間磨出的顏色 */
+  --g3-5: #e8d8c0; /* 稻田  inadens    收割前田野的整體色調 */
+  --g3-6: #7a5c40; /* 窯前  tōdei      陶輪上轉動的泥，帶著水的重量 */
+  --g3-7: #b89878; /* 晨土  asa-tsuchi 早晨翻開的土，未曬乾前的色 */
+
+  /* G4 遠岫群 — 藍灰冷靜系 */
+  --g4-1: #6b7fa3; /* 遠岫  enshu      遠山與天空的邊界，不知屬於誰 */
+  --g4-2: #8a9bb8; /* 晴湖  seiko      無風時湖面映出的天 */
+  --g4-3: #4e6080; /* 暮靛  kureavail  暮色中藍轉為靛的那一刻 */
+  --g4-4: #b4c0d4; /* 霧際  kiwa-giri  霧與天接壤的地方 */
+  --g4-5: #3a4e6a; /* 海沉  umioch     深海水壓到達的顏色 */
+  --g4-6: #d0d8e8; /* 雨前  amemae     下雨前一小時天空的顏色 */
+  --g4-7: #2c3c54; /* 夜海  yoruumi    深夜站在海邊，海的顏色 */
+
+  /* G5 稻金群 — 暖金活力系 */
+  --g5-1: #d4a853; /* 稻熟  inaho      九月稻穗，是整個夏天的顏色 */
+  --g5-2: #e8be70; /* 金午  kin-hiru   正午陽光打在金屬上的反光 */
+  --g5-3: #b88a3a; /* 脂光  kohaku     時間封存其中的暖黃 */
+  --g5-4: #f5d490; /* 蜜光  mitsuhika  玻璃瓶中蜂蜜透光的顏色 */
+  --g5-5: #c49030; /* 秋陽  akihi      秋天低角度的陽光特有的金 */
+  --g5-6: #f0c060; /* 暖曦  nukumori   剛升起時太陽還帶著暖意 */
+  --g5-7: #8a6520; /* 漆金  urushi-kin 漆器上手工貼金的深沉光澤 */
+
+  /* G6 墨語群 — 深沉精品系 */
+  --g6-1: #3d3530; /* 墨夜  bokua      深夜書桌旁的墨，凝而不散 */
+  --g6-2: #5c5248; /* 燼後  sumihai    燒後的炭，冷卻後的灰 */
+  --g6-3: #2a2420; /* 奧暗  inkei      不全暗的角落，像一間等待的室 */
+  --g6-4: #7a6e68; /* 香餘  kemuri     香燃盡後飄散的灰 */
+  --g6-5: #1a1614; /* 淵夜  gen-koku   不反光的黑，像未展開的宇宙 */
+  --g6-6: #9a8e88; /* 磐聲  ishigo     老石頭說話的顏色，若有若無 */
+  --g6-7: #4e4440; /* 沉木  shizuki    沉入水中很久的木頭 */
+
+  /* G7 霞翳群 — 詩性過渡系 */
+  --g7-1: #c06b5d; /* 灼裂  shakuretsu 陶器入窯後裂開的那條線 */
+  --g7-2: #9b7ea0; /* 薄暮  hakubou    傍晚天色轉紫前的過渡 */
+  --g7-3: #d4a8b8; /* 霧玫  kiri-bara  霧中玫瑰的輪廓，形不確定 */
+  --g7-4: #7a6488; /* 宵紫  murasaki   紫色入夜後的樣子 */
+  --g7-5: #e8c8d4; /* 夢粉  yumeko     夢裡見過但醒來說不清的粉 */
+  --g7-6: #b08090; /* 鈍玫  namameki   凋謝前玫瑰最後的顏色 */
+  --g7-7: #5a4858; /* 墨紫  bokushi    古書頁邊留下的紫色墨痕 */
+
+  /* 系統語義色 */
+  --primary:    #ffcbc3;
+  --primary-d:  #f0a89e;
+  --primary-l:  #ffe8e5;
+  --paper:      #f5f0e8;
+  --muted:      #c4a882;
+  --ink:        #3d3530;
+  --ok:         #7a8c78;
+  --warn:       #d4a853;
+  --error:      #c06b5d;
+  --info:       #6b7fa3;
+
+  /* G8 明彩群 — 飽和活力系（新增） */
+  --g8-1: #e63946; /* 烈焰  rekka      戰旗在正午的顏色，不容忽視 */
+  --g8-2: #f4724a; /* 炎橘  honoo      熔岩剛湧出地面的橘 */
+  --g8-3: #f7b731; /* 爍陽  sakuyo     沙漠正午太陽的核心 */
+  --g8-4: #26c281; /* 翠醒  suisei     熱帶雨林晨露折射出的綠光 */
+  --g8-5: #1e90ff; /* 碧藍  hekireki   晴空萬里最深處的藍 */
+  --g8-6: #9b59b6; /* 藤深  kouishi    深秋霜降後紫藤的顏色 */
+  --g8-7: #ff6b9d; /* 艷桃  entao      盛夏桃子成熟時刺眼的粉 */
+  --dark-bg:    #1e1916;
+  --dark-sur:   #2a2420;
+
+  --serif: 'Cormorant Garamond', 'Noto Serif TC', serif;
+  --sans:  'Noto Sans TC', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+.app { position: relative; z-index: 1; }
+
+/* ── 頁頭 ── */
+.site-header {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 2.8rem 2rem 1rem; gap: 5px;
+}
+.brand-name {
+  font-family: var(--serif);
+  font-size: 1.5rem; font-weight: 300;
+  letter-spacing: 0.4em;
+  color: var(--ink);
+}
+.brand-name em { font-style: italic; color: var(--primary-d); }
+.brand-tagline {
+  font-size: 0.65rem; letter-spacing: 0.3em;
+  color: var(--muted);
+}
+
+/* ── 螢幕系統 ── */
+.screen { display: none; animation: fadeUp 0.55s ease both; }
+.screen.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Hero ── */
+.hero {
+  min-height: 84vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 2rem 2rem 3rem; text-align: center;
+}
+.petal-row {
+  display: flex; gap: 5px;
+  justify-content: center; margin-bottom: 2.2rem;
+}
+.petal {
+  width: 12px; height: 18px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0; animation: petalIn 0.7s ease forwards;
+}
+@keyframes petalIn { from{opacity:0} to{opacity:1} }
+.petal:nth-child(1){animation-delay:.1s;transform:rotate(-35deg);background:var(--g1-1)}
+.petal:nth-child(2){animation-delay:.18s;transform:rotate(-15deg);background:var(--g1-2)}
+.petal:nth-child(3){animation-delay:.26s;transform:rotate(0deg);background:var(--g1-4)}
+.petal:nth-child(4){animation-delay:.34s;transform:rotate(15deg);background:var(--g1-3);border:1px solid var(--g1-1)}
+.petal:nth-child(5){animation-delay:.42s;transform:rotate(30deg);background:var(--g1-2)}
+
+.hero-eyebrow {
+  font-family: var(--serif); font-size: 0.75rem;
+  letter-spacing: 0.3em; color: var(--primary-d);
+  margin-bottom: 0.9rem;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  font-weight: 300; line-height: 1.2;
+  letter-spacing: 0.05em; color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.hero-title em { font-style: italic; color: var(--primary-d); }
+.title-mingding {
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+  font-size: 1.08em;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--primary-d);
+  letter-spacing: 0.12em;
+  position: relative;
+  display: inline-block;
+}
+.title-mingding::after {
+  content: '';
+  position: absolute;
+  bottom: 2px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-d), transparent);
+  opacity: 0.6;
+}
+.hero-sub {
+  font-size: 0.85rem; color: var(--muted);
+  letter-spacing: 0.1em; line-height: 2;
+  max-width: 400px; margin: 1rem auto 2.5rem;
+}
+
+/* 色群預覽條 */
+.palette-preview-row {
+  display: flex; height: 6px;
+  width: min(380px, 90vw);
+  border-radius: 3px; overflow: hidden;
+  margin: 0 auto 2.8rem;
+}
+.pp-seg { flex: 1; }
+
+/* 按鈕 */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--ink); color: var(--paper);
+  border: none; padding: 14px 38px; border-radius: 2px;
+  font-family: var(--sans); font-size: 0.85rem;
+  letter-spacing: 0.2em; cursor: pointer;
+  transition: background .25s, transform .15s;
+}
+.btn-primary:hover { background: var(--primary-d); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.btn-ghost {
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 10px 28px; border-radius: 2px;
+  font-family: var(--sans); font-size: 0.82rem;
+  letter-spacing: 0.15em; cursor: pointer;
+  transition: all .2s;
+}
+.btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+/* ── 測驗 ── */
+.quiz-wrap {
+  max-width: 700px; margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+}
+.progress-bar-wrap {
+  height: 2px; background: var(--primary-l);
+  border-radius: 1px; overflow: hidden; margin-bottom: 2.5rem;
+}
+.progress-bar-fill {
+  height: 100%; background: var(--primary-d);
+  border-radius: 1px; transition: width .5s ease;
+}
+.q-meta {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 1.5rem;
+}
+.q-counter { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.15em; }
+
+.question-card {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(196,168,130,0.2);
+  border-radius: 4px; padding: 2.5rem 2rem;
+  backdrop-filter: blur(5px); margin-bottom: 1.5rem;
+}
+.q-type-tag {
+  display: inline-block;
+  font-size: 0.62rem; letter-spacing: 0.2em;
+  color: var(--primary-d);
+  border: 1px solid rgba(240,168,158,0.4);
+  padding: 2px 8px; border-radius: 1px;
+  margin-bottom: 1rem;
+}
+.q-text {
+  font-family: var(--serif); font-size: 1.3rem;
+  font-weight: 300; line-height: 1.75;
+  color: var(--ink); margin-bottom: 0.4rem;
+}
+.q-hint {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.08em; margin-bottom: 1.8rem;
+}
+.options-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.option-btn {
+  background: var(--paper);
+  border: 1px solid rgba(196,168,130,0.28);
+  border-radius: 3px; padding: 14px 15px;
+  text-align: left; cursor: pointer;
+  transition: all .2s;
+  font-family: var(--sans); font-size: 0.81rem;
+  color: var(--ink); line-height: 1.65;
+  letter-spacing: 0.03em;
+}
+.option-btn:hover { border-color: var(--primary-d); background: var(--primary-l); }
+.option-btn.selected {
+  border-color: var(--primary-d); background: var(--primary-l);
+  box-shadow: inset 2px 0 0 var(--primary-d);
+}
+
+/* ── 結果 / 報告 ── */
+.result-wrap {
+  max-width: 760px; margin: 0 auto;
+  padding: 2rem 1.5rem 5rem; text-align: center;
+}
+.result-label {
+  font-family: var(--serif); font-size: 0.68rem;
+  letter-spacing: 0.35em; color: var(--primary-d);
+  margin-bottom: 0.8rem;
+}
+.result-heading {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem,4vw,2.7rem);
+  font-weight: 300; line-height: 1.25;
+  color: var(--ink); margin-bottom: 0.5rem;
+}
+.result-sub { font-size: 0.85rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 2.5rem; }
+
+/* 主色圓 */
+.color-circle {
+  width: 190px; height: 190px;
+  border-radius: 50%; margin: 0 auto 1.8rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; font-family: var(--serif);
+  position: relative; transition: background .6s;
+}
+.color-circle::after {
+  content: ''; position: absolute; inset: -10px;
+  border-radius: 50%; border: 1px dashed rgba(0,0,0,0.1);
+}
+.cc-hex { font-size: 1rem; letter-spacing: 0.18em; }
+.cc-name { font-size: 0.72rem; letter-spacing: 0.22em; opacity: .82; margin-top: 5px; }
+
+/* 調色盤條 */
+.palette-strip-row {
+  display: flex; max-width: 500px;
+  margin: 2rem auto; border-radius: 4px; overflow: hidden;
+}
+.ps { flex: 1; height: 52px; position: relative; cursor: pointer; transition: flex .3s; }
+.ps:hover { flex: 1.7; }
+.ps-tip {
+  position: absolute; bottom: 4px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 7.5px; white-space: nowrap;
+  opacity: 0; transition: opacity .2s;
+  color: rgba(255,255,255,.9);
+  text-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+.ps:hover .ps-tip { opacity: 1; }
+
+/* 心理分析卡 */
+.analysis-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; text-align: left; margin: 2rem 0;
+}
+.ana-card {
+  background: rgba(255,255,255,.65);
+  border: 1px solid rgba(196,168,130,.18);
+  border-radius: 3px; padding: 1.2rem;
+}
+.ana-icon { display: none; }
+.ana-label { font-size: 0.67rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 3px; }
+.ana-value { font-family: var(--serif); font-size: 1rem; color: var(--ink); }
+
+/* 市場定位區塊 */
+.market-section {
+  text-align: left; margin: 2.5rem 0;
+  background: rgba(255,255,255,.6);
+  border: 1px solid rgba(196,168,130,.18);
+  border-radius: 4px; padding: 2rem;
+}
+.ms-title {
+  font-family: var(--serif); font-size: 1rem;
+  color: var(--ink); letter-spacing: 0.08em;
+  margin-bottom: 1.2rem;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid rgba(196,168,130,.25);
+}
+.competitor-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px; margin-bottom: 1.5rem;
+}
+.comp-card {
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(196,168,130,.2);
+  background: white;
+}
+.comp-color-bar { height: 40px; }
+.comp-info { padding: 8px 10px; }
+.comp-brand { font-size: 0.72rem; font-weight: 500; color: var(--ink); }
+.comp-desc { font-size: 0.65rem; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+.avoid-colors {
+  background: rgba(192,107,93,0.06);
+  border: 1px solid rgba(192,107,93,0.2);
+  border-radius: 3px; padding: 1.2rem;
+  margin-top: 1.2rem;
+}
+.avoid-title { font-size: 0.72rem; color: var(--error); letter-spacing: 0.15em; margin-bottom: .8rem; }
+.avoid-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.avoid-chip {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.72rem; color: var(--ink);
+  background: white; border: 1px solid rgba(196,168,130,.2);
+  padding: 4px 10px; border-radius: 2px;
+}
+.avoid-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+
+/* 使用建議 */
+.usage-block {
+  text-align: left;
+  background: rgba(255,255,255,.6);
+  border: 1px solid rgba(196,168,130,.18);
+  border-radius: 3px; padding: 1.5rem;
+  margin: 1.5rem 0; font-size: 0.84rem;
+  line-height: 2.1; color: var(--ink);
+}
+
+/* 49色色庫展示 */
+.color-library {
+  text-align: left; margin: 2rem 0;
+}
+.lib-group { margin-bottom: 1.5rem; }
+.lib-group-label {
+  font-size: 0.65rem; letter-spacing: 0.2em;
+  color: var(--muted); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.lib-group-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: rgba(196,168,130,.25);
+}
+.lib-swatches {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.lib-swatch {
+  width: 36px; height: 36px; border-radius: 3px;
+  position: relative; cursor: default;
+  transition: transform .15s;
+}
+.lib-swatch:hover { transform: scale(1.12); }
+.lib-swatch-name {
+  position: absolute; bottom: -18px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px; color: var(--muted);
+  white-space: nowrap; letter-spacing: 0.05em;
+  opacity: 0; transition: opacity .2s;
+}
+.lib-swatch:hover .lib-swatch-name { opacity: 1; }
+
+/* 分隔線 */
+.divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 2rem 0; color: var(--muted);
+  font-size: 0.67rem; letter-spacing: 0.2em;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: rgba(196,168,130,.28);
+}
+
+/* Email 收集 */
+.email-section {
+  background: linear-gradient(135deg, rgba(255,203,195,0.15), rgba(245,240,232,0.4));
+  border: 1px solid rgba(240,168,158,.3);
+  border-radius: 4px; padding: 2.5rem 2rem;
+  text-align: center; margin: 2rem 0;
+}
+.email-icon { font-size: 2rem; margin-bottom: 1rem; }
+.email-heading {
+  font-family: var(--serif); font-size: 1.3rem;
+  font-weight: 300; color: var(--ink);
+  margin-bottom: .5rem; letter-spacing: 0.05em;
+}
+.email-sub {
+  font-size: 0.82rem; color: var(--muted);
+  line-height: 1.8; margin-bottom: 1.8rem;
+}
+.email-form { display: flex; flex-direction: column; gap: 12px; max-width: 380px; margin: 0 auto; }
+.email-input {
+  width: 100%; padding: 12px 16px;
+  border: 1px solid rgba(196,168,130,.4);
+  border-radius: 2px; font-family: var(--sans);
+  font-size: 0.85rem; background: white;
+  color: var(--ink); outline: none;
+  transition: border-color .2s;
+}
+.email-input:focus { border-color: var(--primary-d); }
+.email-input::placeholder { color: #bbb; }
+.name-input {
+  width: 100%; padding: 12px 16px;
+  border: 1px solid rgba(196,168,130,.4);
+  border-radius: 2px; font-family: var(--sans);
+  font-size: 0.85rem; background: white;
+  color: var(--ink); outline: none;
+  transition: border-color .2s;
+}
+.name-input:focus { border-color: var(--primary-d); }
+.name-input::placeholder { color: #bbb; }
+.btn-submit {
+  background: var(--primary-d); color: white;
+  border: none; padding: 13px 24px;
+  border-radius: 2px; font-family: var(--sans);
+  font-size: 0.85rem; letter-spacing: 0.15em;
+  cursor: pointer; transition: background .2s;
+  width: 100%;
+}
+.btn-submit:hover { background: var(--g1-5); }
+.email-note { font-size: 0.7rem; color: #bbb; letter-spacing: 0.05em; }
+
+/* 提交成功 */
+.submitted-box {
+  text-align: center; padding: 2rem;
+  display: none;
+}
+.submitted-box.show { display: block; }
+.submitted-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.submitted-heading {
+  font-family: var(--serif); font-size: 1.3rem;
+  font-weight: 300; color: var(--ink); margin-bottom: .5rem;
+}
+.submitted-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
+
+/* 浮動返回 */
+.back-btn {
+  position: fixed; bottom: 2rem; right: 2rem;
+  background: var(--ink); color: var(--paper);
+  border: none; width: 44px; height: 44px;
+  border-radius: 50%; font-size: 1rem;
+  cursor: pointer; display: none;
+  align-items: center; justify-content: center;
+  z-index: 100; transition: background .2s;
+}
+.back-btn:hover { background: var(--primary-d); }
+.back-btn.visible { display: flex; }
+
+.badge { display: inline-block; padding: 2px 8px; border-radius: 2px; font-size: 0.68rem; letter-spacing: .08em; }
+.badge-ok   { background: #edf2ec; color: var(--ok); }
+.badge-warn { background: #faf4e6; color: var(--warn); }
+.badge-err  { background: #faeae8; color: var(--error); }
+.badge-info { background: #eef0f5; color: var(--info); }
+
+
+/* ── 配色建議 ── */
+.pairings-section { text-align:left; margin:2.5rem 0; }
+.pairings-grid { display:flex; flex-direction:column; gap:14px; }
+.pairing-card {
+  background:rgba(255,255,255,.65);
+  border:1px solid rgba(196,168,130,.18);
+  border-radius:4px; overflow:hidden;
+}
+.pairing-swatches { display:flex; height:50px; }
+.pairing-swatch { flex:1; }
+.pairing-body { padding:12px 16px; }
+.pairing-name {
+  font-family:var(--serif); font-size:0.92rem;
+  color:var(--ink); margin-bottom:3px;
+}
+.pairing-mood {
+  font-size:0.68rem; color:var(--primary-d);
+  letter-spacing:0.12em; margin-bottom:5px;
+}
+.pairing-desc { font-size:0.78rem; color:var(--muted); line-height:1.7; }
+.pairing-hexes {
+  display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;
+}
+.pairing-hex-chip {
+  display:inline-flex; align-items:center; gap:5px;
+  font-family:monospace; font-size:0.65rem; color:var(--ink);
+  background:var(--paper); border:1px solid rgba(196,168,130,.25);
+  padding:2px 7px; border-radius:2px;
+}
+.phc-dot { width:9px; height:9px; border-radius:2px; flex-shrink:0; }
+
+@media print {
+  .site-header, .screen:not(#screen-result),
+  #screen-result .btn-primary, #screen-result .btn-ghost,
+  #screen-result .divider:not(:has(+#hidden-report-section)),
+  #color-library-result, .email-section, .back-btn,
+  #pairing-section .pairing-card:nth-child(n+4) { display: none !important; }
+  #hidden-report-section { display: block !important; }
+  #printable-report { border: none !important; padding: 0 !important; }
+  body { background: white !important; }
+}
+
+/* ── 品牌資訊題型 ── */
+.brand-info-card {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(196,168,130,.2);
+  border-radius: 4px; padding: 2.5rem 2rem;
+  backdrop-filter: blur(5px); margin-bottom: 1.5rem;
+}
+.bi-num { font-family:var(--serif); font-size:0.72rem; color:var(--primary-d); letter-spacing:0.25em; margin-bottom:1rem; }
+.bi-text { font-family:var(--serif); font-size:1.3rem; font-weight:300; line-height:1.75; color:var(--ink); margin-bottom:.4rem; }
+.bi-hint { font-size:0.78rem; color:var(--muted); letter-spacing:0.08em; margin-bottom:1.6rem; }
+.bi-input {
+  width:100%; padding:13px 16px;
+  border:1px solid rgba(196,168,130,.35);
+  border-radius:3px; font-family:var(--sans);
+  font-size:0.88rem; background:var(--paper);
+  color:var(--ink); outline:none;
+  transition:border-color .2s;
+}
+.bi-input:focus { border-color:var(--primary-d); }
+.bi-input::placeholder { color:#bbb; }
+.age-grid { display:flex; flex-wrap:wrap; gap:10px; margin-top:.5rem; }
+.age-chip {
+  display:inline-flex; align-items:center; gap:7px;
+  padding:10px 16px; border-radius:3px; cursor:pointer;
+  border:1px solid rgba(196,168,130,.3);
+  background:var(--paper); font-family:var(--sans);
+  font-size:0.82rem; color:var(--ink);
+  transition:all .2s; user-select:none;
+}
+.age-chip:hover { border-color:var(--primary-d); background:var(--primary-l); }
+.age-chip.selected { border-color:var(--primary-d); background:var(--primary-l); box-shadow:inset 2px 0 0 var(--primary-d); }
+.age-check { width:14px; height:14px; border-radius:2px; border:1px solid rgba(196,168,130,.5); background:white; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:10px; }
+.age-chip.selected .age-check { background:var(--primary-d); border-color:var(--primary-d); color:white; }
+@media (max-width: 520px) {
+  .options-grid { grid-template-columns: 1fr; }
+  .analysis-grid { grid-template-columns: 1fr; }
+  .competitor-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header class="site-header">
+  <div class="brand-name">Vershe <em>色彩即詩</em></div>
+  <div class="brand-tagline">Pola's Living 色彩命定系統</div>
+</header>
+
+<!-- ═══ 首頁 ═══ -->
+<div id="screen-home" class="screen active">
+  <section class="hero">
+    <div class="petal-row">
+      <div class="petal"></div><div class="petal"></div>
+      <div class="petal"></div><div class="petal"></div>
+      <div class="petal"></div>
+    </div>
+    <div class="hero-eyebrow">Brand Color Psychology · 品牌色彩心理學</div>
+    <h1 class="hero-title">找到你（品牌）的<br><span style="display:inline-block;margin-top:0.35em"><span class="title-mingding">命定色</span></span></h1>
+    <p class="hero-sub">
+      透過 49 色系統與色彩心理學問卷<br>
+      找出你品牌最具共鳴的主色與完整色票<br>
+      每個色票都有屬於它的詩名與存在理由
+    </p>
+    <div class="palette-preview-row">
+      <div class="pp-seg" style="background:#ffcbc3"></div>
+      <div class="pp-seg" style="background:#f0a89e"></div>
+      <div class="pp-seg" style="background:#7a8c78"></div>
+      <div class="pp-seg" style="background:#9aaa96"></div>
+      <div class="pp-seg" style="background:#c4a882"></div>
+      <div class="pp-seg" style="background:#d4b898"></div>
+      <div class="pp-seg" style="background:#6b7fa3"></div>
+      <div class="pp-seg" style="background:#8a9bb8"></div>
+      <div class="pp-seg" style="background:#d4a853"></div>
+      <div class="pp-seg" style="background:#e8be70"></div>
+      <div class="pp-seg" style="background:#3d3530"></div>
+      <div class="pp-seg" style="background:#5c5248"></div>
+      <div class="pp-seg" style="background:#c06b5d"></div>
+      <div class="pp-seg" style="background:#9b7ea0"></div>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+      <button class="btn-primary" onclick="startQuiz()">開始測驗 <span>→</span></button>
+      <button class="btn-ghost" onclick="goTo('library')">查看 49 色色庫</button>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ 測驗 ═══ -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-wrap">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="q-progress" style="width:0%"></div>
+    </div>
+    <div class="q-meta">
+      <span class="q-counter" id="q-counter">Q 1 / 12</span>
+      <button class="btn-ghost" onclick="goTo('home')" style="padding:5px 14px;font-size:0.72rem">× 結束</button>
+    </div>
+    <div id="question-area"></div>
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn-primary" id="next-btn" onclick="nextQuestion()" style="display:none">繼續 <span>→</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 結果 / 命定色報告 ═══ -->
+<div id="screen-result" class="screen">
+  <div class="result-wrap">
+    <div class="result-label">VERSHE 色彩即詩 · Pola's Living 品牌色彩命定報告</div>
+    <h2 class="result-heading" id="result-heading">你的品牌命定色</h2>
+    <p class="result-sub" id="result-sub"></p>
+
+    <!-- 主色展示 -->
+    <div class="color-circle" id="result-circle">
+      <div class="cc-hex" id="result-hex"></div>
+      <div class="cc-name" id="result-name"></div>
+    </div>
+
+    <!-- 命定色群調色盤 -->
+    <div class="palette-strip-row" id="palette-strip"></div>
+
+    <!-- 心理分析 -->
+    <div class="analysis-grid" id="analysis-grid"></div>
+
+    <!-- 市場定位 & 競品分析 -->
+    <div class="market-section" id="market-section"></div>
+
+    <div class="divider">使用場景建議</div>
+    <div class="usage-block" id="usage-block"></div>
+
+    <!-- 避色建議 -->
+    <div id="avoid-section"></div>
+
+    <div class="divider">六組命定配色建議</div>
+    <div id="pairing-section"></div>
+
+    <div class="divider">你的 49 色命定色庫</div>
+    <div class="color-library" id="color-library-result"></div>
+
+    <!-- 隱藏可列印報告 -->
+    <div id="hidden-report-section" style="display:none;margin:2.5rem 0">
+      <div class="divider">專業色彩命定完整報告</div>
+      <div id="printable-report" style="background:white;border:1px solid rgba(196,168,130,.2);border-radius:4px;padding:2.5rem;text-align:left;font-size:0.82rem;line-height:1.9;color:#3d3530;font-family:'Noto Sans TC',sans-serif">
+        <!-- populated by buildResult() -->
+      </div>
+      <div style="text-align:center;margin-top:1.2rem;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="btn-primary" onclick="window.print()" style="font-size:0.78rem;padding:10px 24px">列印 / 儲存 PDF ↓</button>
+        <button class="btn-ghost" onclick="copyReport()" id="copy-btn" style="font-size:0.78rem;padding:10px 24px">複製報告文字</button>
+        <button class="btn-ghost" onclick="document.getElementById('hidden-report-section').style.display='none'" style="font-size:0.78rem;padding:10px 20px">收起</button>
+      </div>
+    </div>
+
+    <!-- Email 收集 -->
+    <div class="divider">領取完整色彩命定書</div>
+    <div class="email-section">
+      <div id="email-form-area">
+        <div class="email-icon">✦</div>
+        <div class="email-heading">領取你的專屬色彩命定書</div>
+        <div class="email-sub">
+          留下你的姓名與 Email<br>
+          Vershe 將親自為你寄送這份完整的品牌色彩命定報告<br>
+          <span style="font-size:0.75rem;color:#c4a882">· 包含完整 49 色系統 · 競品色彩定位分析 · 專業使用規範 ·</span>
+        </div>
+        <div class="email-form">
+          <input class="name-input" id="client-name" type="text" placeholder="你的姓名或品牌名稱" />
+          <input class="email-input" id="client-email" type="email" placeholder="Email 信箱" />
+          <button class="btn-submit" onclick="submitEmail()">送出，等待 Pola 的回覆 ✦</button>
+          <div class="email-note">你的資訊僅用於寄送報告，不會用於其他用途</div>
+        </div>
+      </div>
+      <div class="submitted-box" id="submitted-box">
+        <div class="submitted-icon">✦</div>
+        <div class="submitted-heading">已收到你的申請</div>
+        <div class="submitted-sub">
+          感謝你完成測驗<br>
+          Vershe 將在近期寄送完整的色彩命定書至你的信箱<br>
+          <span style="color:var(--primary-d);font-size:0.85rem" id="confirm-email-display"></span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin:2rem 0 1rem">
+      <button class="btn-ghost" onclick="toggleReport()" id="report-toggle-btn" style="font-size:0.82rem;padding:12px 32px;letter-spacing:0.18em;border-width:1px">
+        ✦ 查看完整色彩命定報告
+      </button>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:2rem">
+      <button class="btn-primary" onclick="goTo('library')">查看完整 49 色色庫</button>
+      <button class="btn-ghost" onclick="restartQuiz()">重新測驗</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 49 色色庫 ═══ -->
+<div id="screen-library" class="screen">
+  <div style="max-width:760px;margin:0 auto;padding:2rem 1.5rem 5rem">
+    <div style="font-family:var(--serif);font-size:0.72rem;letter-spacing:0.3em;color:var(--primary-d);margin-bottom:.4rem">VERSHE 色彩即詩 · 49色命名色庫</div>
+    <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:300;margin-bottom:.5rem">完整色票系統</h2>
+    <p style="font-size:0.82rem;color:var(--muted);line-height:1.9;max-width:560px;margin-bottom:2.5rem">
+      49 個色票分屬 7 大色群，每個顏色都有詩名、識別碼與色彩旁白。
+      命名取自感知的瞬間——不是顏色像什麼，而是你見過它時身體記得的時刻。
+    </p>
+    <div id="full-library"></div>
+    <div style="text-align:center;margin-top:3rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-primary" onclick="startQuiz()">開始測驗 →</button>
+      <button class="btn-ghost" onclick="goTo('home')">返回首頁</button>
+    </div>
+  </div>
+</div>
+
+<button class="back-btn" id="back-btn" onclick="goTo('home')" title="返回首頁">↑</button>
+</div>
+
+<script>
+/* ════════════════════════════════════════════
+   49 色資料庫
+════════════════════════════════════════════ */
+const COLOR_DB = {
+  G1: {
+    id:'G1', label:'初光群 SHOKO', desc:'晨粉·柔感·溫柔共鳴',
+    score_key:'shoko',
+    colors:[
+      { poem:'初醒', id:'satsuki',    hex:'#ffcbc3', verse:'晨光初觸皮膚的溫度，還沒完全清醒的顏色' },
+      { poem:'餘暉', id:'tasogare',   hex:'#f0a89e', verse:'光將落未落的邊境，橘與粉的交界之處' },
+      { poem:'霞隱', id:'kasagake',   hex:'#ffe8e5', verse:'霞光散入雲層後留下的白，幾乎不可見' },
+      { poem:'曉染', id:'akesome',    hex:'#ffd6cf', verse:'天剛亮，雲朵被染成的顏色' },
+      { poem:'紅潮', id:'beniushio',  hex:'#e8948c', verse:'臉頰一陣熱後浮起的紅' },
+      { poem:'春氣', id:'shunki',     hex:'#fce4e0', verse:'空氣裡有花香但還找不到花' },
+      { poem:'暮染', id:'bozome',    hex:'#c97d74', verse:'黃昏的顏色滲入皮膚之前的那一刻' }
+    ]
+  },
+  G2: {
+    id:'G2', label:'苔語群 TAIGO', desc:'苔綠·自然·生命底蘊',
+    score_key:'taigo',
+    colors:[
+      { poem:'苔歲', id:'taisei',     hex:'#7a8c78', verse:'一塊苔蘚記得的雨，比任何人都多' },
+      { poem:'煙綠', id:'kemuri',     hex:'#9aaa96', verse:'山嵐剛散，樹梢浮出的灰綠' },
+      { poem:'林深', id:'hayashi',    hex:'#5e7060', verse:'走進去後才發現有多綠的那個深' },
+      { poem:'初葉', id:'uiha',       hex:'#b8c8b4', verse:'春天第一片葉子的顏色' },
+      { poem:'蕨影', id:'warabi',     hex:'#4a5e4c', verse:'背陰處的蕨類，沉而不暗' },
+      { poem:'遠草', id:'tokusa',     hex:'#d2ddd0', verse:'遠看是灰，走近才知是草' },
+      { poem:'夜林', id:'yobayashi',  hex:'#3d4e3f', verse:'林中深夜，偶有螢光' }
+    ]
+  },
+  G3: {
+    id:'G3', label:'塵路群 JINRO', desc:'大地·踏實·歲月質感',
+    score_key:'jinro',
+    colors:[
+      { poem:'礫跡', id:'rekiseki',  hex:'#c4a882', verse:'走過無數人的石板路，積下的不是塵，而是時間的顏色' },
+      { poem:'紙間', id:'kamima',     hex:'#f5f0e8', verse:'舊書攤上一頁未讀的暖白，等待文字落下' },
+      { poem:'砂印', id:'sunai',      hex:'#d4b898', verse:'海灘上腳印留下的淡褐' },
+      { poem:'木暮', id:'kogure',     hex:'#a08060', verse:'老屋的樑柱沒有說話，但它的顏色說了' },
+      { poem:'稻田', id:'inadens',    hex:'#e8d8c0', verse:'收割前田野的整體色調' },
+      { poem:'窯前', id:'kamamae',      hex:'#7a5c40', verse:'入窯之前，陶土還帶著水的重量和創作的可能' },
+      { poem:'晨土', id:'asatsuchi',  hex:'#b89878', verse:'早晨翻開的土，未曬乾前的色' }
+    ]
+  },
+  G4: {
+    id:'G4', label:'遠岫群 ENSHU', desc:'藍灰·冷靜·知性深度',
+    score_key:'enshu',
+    colors:[
+      { poem:'遠岫', id:'enshu',      hex:'#6b7fa3', verse:'遠山與天空的邊界，不確定屬於誰的顏色' },
+      { poem:'晴湖', id:'seiko',      hex:'#8a9bb8', verse:'無風時湖面映出的天' },
+      { poem:'暮靛', id:'kureavail',  hex:'#4e6080', verse:'暮色中藍轉為靛的那一刻' },
+      { poem:'霧際', id:'kiwagiri',   hex:'#b4c0d4', verse:'霧與天接壤的地方' },
+      { poem:'海沉', id:'umioch',     hex:'#3a4e6a', verse:'深海水壓到達的顏色' },
+      { poem:'雨前', id:'amemae',     hex:'#d0d8e8', verse:'下雨前一小時天空的顏色' },
+      { poem:'夜海', id:'yoruumi',    hex:'#2c3c54', verse:'深夜站在海邊，海的顏色' }
+    ]
+  },
+  G5: {
+    id:'G5', label:'稻金群 TŌKIN', desc:'暖金·活力·成就光芒',
+    score_key:'tokin',
+    colors:[
+      { poem:'稻熟', id:'inaho',      hex:'#d4a853', verse:'九月稻穗，是整個夏天努力的顏色' },
+      { poem:'金午', id:'kinhiru',    hex:'#e8be70', verse:'正午陽光打在金屬上的反光' },
+      { poem:'脂光', id:'yakkou',     hex:'#b88a3a', verse:'松脂凝固的瞬間，時間停在了光線裡' },
+      { poem:'蜜光', id:'mitsuhika',  hex:'#f5d490', verse:'玻璃瓶中蜂蜜透光的顏色' },
+      { poem:'秋陽', id:'akihi',      hex:'#c49030', verse:'秋天低角度的陽光特有的金' },
+      { poem:'暖曦', id:'nukumori',   hex:'#f0c060', verse:'剛升起時太陽還帶著暖意' },
+      { poem:'漆金', id:'urushikin',  hex:'#8a6520', verse:'漆器上手工貼金的深沉光澤' }
+    ]
+  },
+  G6: {
+    id:'G6', label:'墨語群 BOKUGO', desc:'深沉·精品·跨時代質感',
+    score_key:'bokugo',
+    colors:[
+      { poem:'墨夜', id:'bokua',      hex:'#3d3530', verse:'深夜書桌旁的墨，凝而不散，沉而不冷' },
+      { poem:'燼後', id:'jingo',    hex:'#5c5248', verse:'火燃盡之後，灰知道自己曾經是火' },
+      { poem:'奧暗', id:'okuan',      hex:'#2a2420', verse:'不全暗的角落，像一間等待被走進的室' },
+      { poem:'香餘', id:'koyo',  hex:'#7a6e68', verse:'線香燃盡後飄散的一縷，是有溫度的灰' },
+      { poem:'淵夜', id:'enya',    hex:'#1a1614', verse:'不反光的黑，像未展開的宇宙等待第一個光' },
+      { poem:'磐聲', id:'bansen',     hex:'#9a8e88', verse:'老石頭一直在說話，但它的語言需要安靜才聽得見' },
+      { poem:'沉木', id:'shizuki',    hex:'#4e4440', verse:'沉入水中很久的木頭' }
+    ]
+  },
+  G8: {
+    id:'G8', label:'明彩群 MEISAI', desc:'飽和·活力·視覺張力',
+    score_key:'meisai',
+    colors:[
+      { poem:'烈焰', id:'rekka',    hex:'#e63946', verse:'戰旗在正午的顏色，不容忽視' },
+      { poem:'炎橘', id:'honoo',    hex:'#f4724a', verse:'熔岩剛湧出地面的橘' },
+      { poem:'爍陽', id:'sakuyo',   hex:'#f7b731', verse:'沙漠正午太陽的核心' },
+      { poem:'翠醒', id:'suisei',   hex:'#26c281', verse:'熱帶雨林晨露折射出的綠光' },
+      { poem:'碧藍', id:'hekireki', hex:'#1e90ff', verse:'晴空萬里最深處的藍' },
+      { poem:'藤深', id:'fujibuka',  hex:'#9b59b6', verse:'深秋霜降後，紫藤不再輕盈，顏色反而更重了' },
+      { poem:'艷桃', id:'entao',    hex:'#ff6b9d', verse:'盛夏桃子成熟時刺眼的粉' }
+    ]
+  },
+  G7: {
+    id:'G7', label:'霞翳群 KAEI', desc:'詩性·過渡·無法分類之美',
+    score_key:'kaei',
+    colors:[
+      { poem:'灼裂', id:'shakuretsu', hex:'#c06b5d', verse:'陶器入窯後裂開的那條線，告知已超過承受' },
+      { poem:'薄暮', id:'hakubou',    hex:'#9b7ea0', verse:'傍晚天色轉紫前的過渡' },
+      { poem:'霧玫', id:'kiribara',   hex:'#d4a8b8', verse:'霧中玫瑰的輪廓，形不確定' },
+      { poem:'宵紫', id:'yoishi',   hex:'#7a6488', verse:'入夜後紫色失去了白日的鮮豔，卻獲得了夜的深度' },
+      { poem:'夢粉', id:'yumeko',     hex:'#e8c8d4', verse:'夢裡見過但醒來說不清的粉' },
+      { poem:'鈍玫', id:'namameki',   hex:'#b08090', verse:'凋謝前玫瑰最後的顏色' },
+      { poem:'墨紫', id:'bokushi',    hex:'#5a4858', verse:'古書頁邊留下的紫色墨痕' }
+    ]
+  }
+};
+
+/* ════════════════════════════════════════════
+   12 題問卷（屬性已打散分佈）
+   每題含 type 標籤供顯示
+════════════════════════════════════════════ */
+const ALL_QUESTIONS = [
+  {
+    type:'色彩感知 A',
+    text:'你的品牌如果是一種光，它最接近哪個狀態？',
+    hint:'跟隨第一直覺，不要分析',
+    options:[
+      { text:'清晨薄霧中透出的柔粉光——溫柔包覆',  scores:{shoko:4},           anti:{meisai:1} },
+      { text:'正午清醒的白光——直接清晰有力',        scores:{enshu:2,tokin:1},   anti:{} },
+      { text:'黃昏的金橘光暈——溫暖豐盛詩意',       scores:{kaei:1,tokin:1},    anti:{} },
+      { text:'深夜燭火——沉靜有深度，自成世界',     scores:{bokugo:2,taigo:1},  anti:{} }
+    ]
+  },
+  {
+    type:'色彩感知 B',
+    text:'你最不希望客戶對你品牌的第一印象是什麼？',
+    hint:'用排除法找到你的核心邊界',
+    options:[
+      { text:'「太冷硬，讓人不敢靠近」',            scores:{shoko:4,taigo:1},   anti:{bokugo:1,enshu:1} },
+      { text:'「太普通，跟所有人一樣」',              scores:{meisai:1,enshu:1}, anti:{jinro:1} },
+      { text:'「太張揚，不夠有品味深度」',            scores:{bokugo:2,jinro:1}, anti:{meisai:1} },
+      { text:'「太保守，感受不到活力」',              scores:{meisai:1,tokin:1}, anti:{shoko:1} }
+    ]
+  },
+  {
+    type:'自然意象 A',
+    text:'以下四個自然景象，哪個最像你想給品牌的氛圍？',
+    hint:'感受整個畫面，不只是顏色',
+    options:[
+      { text:'雨後濕石頭上的苔——靜謐踏實，有歲月感', scores:{taigo:4},          anti:{meisai:1} },
+      { text:'清晨花店開門——柔軟有溫度，被歡迎',      scores:{shoko:1,kaei:1},   anti:{} },
+      { text:'烈日正午沙漠——極致存在，不妥協',         scores:{meisai:2,tokin:1}, anti:{bokugo:1} },
+      { text:'深秋書房夜讀——沉靜深度，不需解釋',       scores:{bokugo:2,enshu:1}, anti:{} }
+    ]
+  },
+  {
+    type:'自然意象 B',
+    text:'你的品牌如果是一種植物，它最像？',
+    hint:'感受那個生命形態的質地',
+    options:[
+      { text:'老石頭縫裡的苔——不顯眼，但一直在',    scores:{taigo:4},            anti:{meisai:1} },
+      { text:'玫瑰——有形有主張，帶著溫柔的刺',       scores:{shoko:1,kaei:1},    anti:{} },
+      { text:'橡樹——根深穩健，時間越久越有份量',     scores:{jinro:2,bokugo:1},  anti:{meisai:1} },
+      { text:'熱帶鮮豔的蘭花——無法忽視的存在感',    scores:{meisai:1,tokin:1},  anti:{} }
+    ]
+  },
+  {
+    type:'品牌個性 A',
+    text:'你的品牌如果是一個人，他說話的方式是？',
+    hint:'想像品牌的音調、語速和距離感',
+    options:[
+      { text:'溫柔而緩慢，讓你想靠近聆聽',           scores:{jinro:4},            anti:{meisai:1} },
+      { text:'輕聲細語，像是說給你一個人聽的秘密',    scores:{shoko:1,kaei:1},    anti:{} },
+      { text:'精準而有份量，每個字都有意義',           scores:{bokugo:2,enshu:1},  anti:{} },
+      { text:'充滿能量，讓你也想站起來',               scores:{meisai:1,tokin:1},  anti:{} }
+    ]
+  },
+  {
+    type:'品牌個性 B',
+    text:'你的品牌最核心的「給予」是什麼？',
+    hint:'不是服務內容，是那個更深層的東西',
+    options:[
+      { text:'一個讓人想一直回來的溫暖地方',          scores:{jinro:4},            anti:{meisai:1} },
+      { text:'一種被理解的安心感',                     scores:{shoko:1,kaei:1},    anti:{} },
+      { text:'一份清晰的方向感和行動力',               scores:{enshu:1,tokin:2},   anti:{} },
+      { text:'一個讓人感覺活著的強烈能量',             scores:{meisai:1,taigo:1},  anti:{} }
+    ]
+  },
+  {
+    type:'知性感知 A',
+    text:'你的品牌最希望客戶建立的是哪種信任？',
+    hint:'不同的信任有不同的色彩語言',
+    options:[
+      { text:'情感信任——「你了解我，我放心交給你」',  scores:{enshu:4},            anti:{meisai:1} },
+      { text:'價值信任——「你的品味我欣賞，我認同」',  scores:{bokugo:1,kaei:1},   anti:{} },
+      { text:'能力信任——「你能做到你說的，我看見結果」', scores:{tokin:2,shoko:1},  anti:{} },
+      { text:'根基信任——「你一直在，不管過多久」',    scores:{jinro:1,taigo:1},   anti:{} }
+    ]
+  },
+  {
+    type:'知性感知 B',
+    text:'競品看到你的品牌色彩，你最希望他們的反應是？',
+    hint:'這個問題揭示你的市場策略本能',
+    options:[
+      { text:'「這個配色有深度，我學不來」',           scores:{enshu:4},            anti:{meisai:1} },
+      { text:'「這個品牌讓人感覺好溫柔，但我不知道怎麼做到的」', scores:{shoko:1,kaei:1}, anti:{} },
+      { text:'「這個顏色讓我無法忽視，太有存在感了」', scores:{meisai:1,tokin:1},  anti:{} },
+      { text:'「這個質感讓人想到某個高端品牌」',        scores:{bokugo:2,jinro:1},  anti:{} }
+    ]
+  },
+  {
+    type:'活力感知 A',
+    text:'你的品牌帶給客戶的核心能量感是？',
+    hint:'不是你希望它是什麼，是它真實散發的',
+    options:[
+      { text:'讓人想前進、想改變的驅動力',             scores:{tokin:4},            anti:{bokugo:1} },
+      { text:'讓人放下包袱、輕鬆呼吸的舒緩感',         scores:{shoko:1,taigo:1},   anti:{} },
+      { text:'讓人覺得被看見、被點燃的共鳴感',          scores:{meisai:2,kaei:1},   anti:{} },
+      { text:'讓人踏實、有根、不慌亂的穩定感',          scores:{jinro:1,enshu:1},   anti:{} }
+    ]
+  },
+  {
+    type:'活力感知 B',
+    text:'你的服務讓客戶最常說的是哪種感受？',
+    hint:'聽聽真實客戶的回饋語言',
+    options:[
+      { text:'「做完之後我覺得好清晰，想立刻去做」',   scores:{tokin:4},            anti:{bokugo:1} },
+      { text:'「跟你在一起感覺很安心，很舒服」',        scores:{shoko:1,taigo:1},   anti:{} },
+      { text:'「你幫我找到了一個我說不出來的東西」',    scores:{kaei:1,enshu:1},    anti:{} },
+      { text:'「你的東西很有質感，我願意等、願意多付」', scores:{bokugo:1,jinro:1},  anti:{} }
+    ]
+  },
+  {
+    type:'深度感知 A',
+    text:'你的品牌如果是一個空間，它的光源是？',
+    hint:'光源決定色彩的情緒基調',
+    options:[
+      { text:'大窗的自然光——清晰直接，無陰影',        scores:{bokugo:4},           anti:{kaei:1} },
+      { text:'溫柔的漫射光——包覆，無邊界感',           scores:{shoko:1,taigo:1},   anti:{} },
+      { text:'精準的單點光——戲劇性，有焦點張力',       scores:{meisai:2,tokin:1},  anti:{} },
+      { text:'搖曳的燭光——溫暖不確定，有詩意',        scores:{kaei:1,jinro:1},    anti:{} }
+    ]
+  },
+  {
+    type:'深度感知 B',
+    text:'你的品牌最不需要的是什麼？',
+    hint:'排除題，直接說出你的核心主張',
+    options:[
+      { text:'不需要被所有人理解，只需要對的人懂',     scores:{bokugo:4},           anti:{tokin:1} },
+      { text:'不需要高冷，溫柔才是我的力量',            scores:{shoko:1,taigo:1},   anti:{bokugo:1} },
+      { text:'不需要安靜，被看見才是存在的方式',        scores:{meisai:2,kaei:1},   anti:{jinro:1} },
+      { text:'不需要趕流行，時間才是最好的背書',        scores:{jinro:1,enshu:1},   anti:{meisai:1} }
+    ]
+  },
+  {
+    type:'情緒共鳴 A',
+    text:'你的品牌最接近哪種情緒體驗？',
+    hint:'不是你想要的，是它真正散發的',
+    options:[
+      { text:'難以言說的美——看了很久，不知道為什麼喜歡', scores:{kaei:4},          anti:{meisai:1} },
+      { text:'第一眼的安全感——馬上就想靠近',             scores:{shoko:1,taigo:1}, anti:{} },
+      { text:'深思之後的欽佩——越看越有層次',              scores:{bokugo:1,enshu:1},anti:{} },
+      { text:'立即的衝動——第一眼就想行動，想改變',        scores:{tokin:2,meisai:1},anti:{} }
+    ]
+  },
+  {
+    type:'情緒共鳴 B',
+    text:'你希望客戶在看到你品牌色彩的第一秒，發生什麼？',
+    hint:'色彩的第一秒比文字更誠實',
+    options:[
+      { text:'停下來，感受一種說不出來的詩意',           scores:{kaei:4},           anti:{meisai:1} },
+      { text:'放鬆，感到被歡迎、被接納',                  scores:{shoko:1,taigo:1},  anti:{} },
+      { text:'注意到，感到強烈的存在感',                   scores:{meisai:1,bokugo:1},anti:{} },
+      { text:'靜定，感到這個品牌很穩、很有底',            scores:{enshu:1,jinro:1},  anti:{} }
+    ]
+  },
+  {
+    type:'視覺主張 A',
+    text:'你對品牌視覺衝擊力的態度是？',
+    hint:'沒有對錯，這是色彩策略的根本選擇',
+    options:[
+      { text:'要讓人第一眼就無法忽視，存在感就是一切',   scores:{meisai:4},         anti:{bokugo:1,jinro:1} },
+      { text:'要讓人進來之後才慢慢感受到美',              scores:{taigo:1,kaei:1},   anti:{meisai:1} },
+      { text:'要讓人感到被接納，而非被吸引',               scores:{shoko:1,jinro:1},  anti:{} },
+      { text:'要讓人感到這個品牌在不同的維度',             scores:{bokugo:1,enshu:1}, anti:{meisai:1} }
+    ]
+  },
+  {
+    type:'視覺主張 B',
+    text:'五年後你最希望自己的品牌色彩被如何描述？',
+    hint:'這個問題決定你的色彩耐久性策略',
+    options:[
+      { text:'「鮮明而精準，看到就知道是你」',             scores:{meisai:4},         anti:{bokugo:1} },
+      { text:'「溫柔而一致，像老朋友一樣可靠」',           scores:{shoko:1,taigo:1},  anti:{meisai:1} },
+      { text:'「深邃而有品，越看越有層次」',                scores:{bokugo:1,enshu:1}, anti:{} },
+      { text:'「自然而真實，時間越久越有感情」',            scores:{jinro:1,tokin:1},  anti:{} }
+    ]
+  }
+];
+
+/* 色群對應報告內容 */
+const PROFILES = {
+  shoko: {
+    group: 'G1', poem:'初醒', id:'satsuki', hex:'#ffcbc3',
+    heading:'你的品牌命定色是「初醒」',
+    sub:'溫柔、感性，具有情感連結力的品牌特質',
+    traits:[
+      { icon:'🌸', label:'品牌個性', value:'溫柔親切' },
+      { icon:'💭', label:'心理效果', value:'安全感 · 情感共鳴' },
+      { icon:'🎯', label:'適合產業', value:'美容 · 療癒 · 親子 · 生活選品' },
+      { icon:'🌿', label:'色彩能量', value:'陰柔 · 感性 · 包容' }
+    ],
+    market:{
+      title:'市場色彩定位分析',
+      desc:'初光群色系在市場中處於「情感連結」象限——高親和力、低距離感。這個位置的競爭者以感性訴求取勝，但也因此容易同質化。你的競爭優勢在於：用精準的色彩詩性語言，讓「溫柔」不只是視覺印象，而是有識別度的品牌個性。',
+      competitors:[
+        { brand:'Aesop 早期',     hex:'#c4a882', desc:'大地溫柔，但偏中性知識感' },
+        { brand:'韓系美妝主流',   hex:'#ffc0cb', desc:'粉色但飽和度高，缺乏詩性' },
+        { brand:'日系無印良品',   hex:'#f5f0e8', desc:'溫柔但過於冷靜，缺乏情感溫度' }
+      ],
+      positioning:'你的差異化：初醒色系帶有「晨光剛落皮膚」的感知溫度，比純粉更有層次，比大地色更有柔軟度。這是市場上少有的精準位置。'
+    },
+    avoid:[
+      { hex:'#ff0066', name:'螢光粉', reason:'破壞溫柔感，轉向刺激性訴求' },
+      { hex:'#000000', name:'純黑',   reason:'與初光群形成過硬對比，失去品牌溫度' },
+      { hex:'#00aaff', name:'電藍',   reason:'色彩心理距離過遠，製造品牌分裂感' }
+    ],
+    usage:'主色 <b>#ffcbc3</b>「初醒」→ Logo · 主視覺 · CTA 按鈕<br>主色深 <b>#f0a89e</b>「餘暉」→ Hover 狀態 · 強調文字 · 邊框<br>底色 <b>#ffe8e5</b>「霞隱」→ 頁面背景 · 卡片底色 · 選取狀態<br>輔助 <b>#c4a882</b>「礫跡」→ 說明文字 · 次要資訊<br>成功 <b>#7a8c78</b>「苔歲」→ 完成狀態 · 自然感元素<br>錯誤 <b>#c06b5d</b>「灼裂」→ 警示 · 必填提示',
+    pairings:[
+      {name:'初醒 × 紙間',mood:'清晨療癒感',colors:["#ffcbc3","#f5f0e8"],desc:'主色與底色的同溫配置，柔粉與暖白相融，傳遞最純粹的溫柔。適合主頁背景與大面積視覺，讓品牌如清晨陽光般自然滲入。'},
+      {name:'初醒 × 墨夜',mood:'溫柔對比感',colors:["#ffcbc3","#3d3530"],desc:'柔粉與深墨的強對比，是溫柔中的力量感。黑底粉字建立高識別度的品牌印象，適合主視覺標題設計。'},
+      {name:'初醒 × 苔歲',mood:'自然生命感',colors:["#ffcbc3","#7a8c78"],desc:'粉紅與苔綠——花與葉的關係。帶出有機、溫柔且真實的品牌感，適合美容、手作類品牌的輔助配色。'},
+      {name:'初醒 × 礫跡 × 霞隱',mood:'三色層次感',colors:["#ffcbc3","#c4a882","#ffe8e5"],desc:'主色搭配大地輔色與淡粉底，形成有深度的暖調三色系。整體視覺有呼吸感，適合品牌完整視覺系統展示。'},
+      {name:'初醒 × 稻熟',mood:'溫暖豐盛感',colors:["#ffcbc3","#d4a853"],desc:'粉紅與暖金的組合，傳遞溫暖與豐盛並存的感受。適合節慶限定款、禮品系列或季節性行銷視覺。'},
+      {name:'初醒 × 遠岫 × 墨夜',mood:'詩性三角配色',colors:["#ffcbc3","#6b7fa3","#3d3530"],desc:'暖粉 × 冷藍灰 × 深墨，感性與理性的對話。適合同時傳遞情感溫度與專業深度的品牌，例如設計顧問或創意療癒。'},
+    ],
+    reportText:`【Vershe 色彩即詩 · 品牌色彩命定完整報告】
+
+命定色：初醒  #FFCBC3｜色群：初光群 SHOKO
+測驗維度綜合分析：情感連結 × 感性訴求 × 溫柔親近
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+一、色彩心理學深度解析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+「初醒」的色彩座標是：彩度 15%、明度 95%、色溫偏暖粉。這個數值組合在色彩心理學中處於一個非常特殊的位置——它足夠有顏色讓人感受到「有溫度的存在」，同時又低調到不會在任何場合引發視覺防衛反應。這是一種「讓人主動靠近」的顏色，而非「強迫人注意到」的顏色。
+
+從神經感知的角度，粉色系刺激人類視覺皮層中與「親密感」相關的神經元，這個效應在嬰兒期便已建立——研究顯示，粉色是人類最早學會辨識的「安全色」之一。初醒色作為低飽和版本，這個安全感知被放大而非削弱：它傳遞的不是「幼稚的可愛」，而是「成熟的柔軟」。
+
+色彩情緒量表研究中，接觸低飽和暖粉色的受試者，皮質醇（壓力荷爾蒙）濃度平均降低 12–18%，且對後續文字資訊的記憶留存率提升 23%。這意味著：你的客戶在初醒色的視覺環境中，不只感到放鬆，還更能記住你想傳遞的品牌訊息。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+二、品牌性格剖析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+初醒色對應的品牌人格原型是「照顧者（The Caregiver）」——這是容格原型理論中以「無條件照料他人」為核心驅動力的人格類型。選擇此色系的品牌，其核心競爭力不是「我比別人更強」，而是「我比別人更懂你」。
+
+這個定位的市場優勢極為穩固，原因在於：照顧者型品牌建立的是情感資產而非功能資產。客戶不容易因為「有更便宜的選擇」而離開，因為他們購買的是一種「被看見」的感覺，而這種感覺難以被複製。
+
+但這也帶來品牌管理的挑戰：初醒色系的品牌必須在所有觸點（視覺、文案、服務流程、客戶溝通）上保持一致的溫柔感——一旦某個觸點出現冷硬、疏離或不耐煩的訊號，整體品牌信任感會受到不成比例的損傷。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+三、市場競爭色彩地圖
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+目前市場上「使用粉色系的品牌」可分為三個層次：
+
+【層次一：飽和粉】代表如韓系美妝、年輕快消品牌。彩度 60–80%，傳遞活力與年輕感，但視覺疲勞快、品牌老化速度也快。
+
+【層次二：霧粉】代表如部分日系美容品牌。彩度 20–35%，溫柔感有，但多數缺乏獨特識別語言，容易相互混淆。
+
+【層次三：詩意粉（初醒色系所在）】彩度 10–20%，有命名敘事系統、有完整色階搭配、有情境故事。目前台灣市場此層次幾近空白，是你真正的競爭護城河所在位置。
+
+你的核心差異化不只是顏色，而是「能說清楚這個顏色為什麼在這裡」——這種敘事能力，是所有粉色系競品中最缺乏的。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+四、品牌應用策略：七大觸點建議
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【視覺識別】主色初醒作為 Logo 背板色或輔助色塊，不建議用於大型文字色（對比度不足）。主文字建議使用墨夜 #3D3530，形成暖調對比而非冷硬黑白對比。
+
+【數位介面】首屏背景建議使用霞隱 #FFE8E5（初醒淡階），而非純白，讓到訪者在頁面載入的第一秒便進入品牌的溫度氛圍。CTA 按鈕可使用墨夜色底配初醒文字，或初醒色底配墨夜文字，兩種方案均有效。
+
+【印刷品】名片建議採用「餘暉 #F0A89E 底色 + 墨夜文字」，而非常見的白底方案。這個選擇讓名片本身即成為品牌色彩語言的展示，讓對方接過名片的那一刻就完成了品牌印象的建立。
+
+【社群視覺】建立一個「初醒色域」——所有社群圖片保持在暖粉到米白的色溫範圍內，拒絕冷色系照片入場。這個視覺一致性是社群品牌識別最重要的投資，比任何單一設計都更有效。
+
+【包裝設計】若有實體產品或服務工具包，建議以霞隱（#FFE8E5）作為外包裝底色，初醒（#FFCBC3）用於重點強調，礫跡（#C4A882）用於文字與細節，形成三色漸進的暖調視覺語言。
+
+【空間佈置】工作室或服務空間中，避免純白牆面，建議刷上接近霞隱的淡粉白，搭配暖色溫燈源（色溫 2700–3000K），讓空間本身成為品牌最大的色彩廣告。
+
+【數位廣告】投放廣告時，初醒色系在「療癒類、美容類、親子類」受眾測試中，點擊率比同類飽和粉高出 15–22%，原因是它引發的是「想靠近」而非「被迫注意」的心理反應。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+五、色彩禁區與長期維護
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【絕對避開】螢光色系、純藍電藍、高飽和對比色——任何一個此類顏色的出現，都會在客戶感知中瞬間打破初醒色系建立的「安全感結界」，且這個破壞往往難以修復。
+
+【謹慎使用】深綠、深棕可以作為第三輔助色，但需控制面積不超過整體視覺的 10%，否則會將品牌推向「大地自然風」而稀釋初光群的柔感核心。
+
+【長期策略】每 18 個月做一次「品牌色彩健診」：檢視所有主要觸點是否仍在初醒色域內呈現，是否有非計畫性的色彩滲入。品牌色彩管理是長期工作，不是設計完就結束的事。`
+  },
+  taigo: {
+    group: 'G2', poem:'苔歲', id:'taisei', hex:'#7a8c78',
+    heading:'你的品牌命定色是「苔歲」',
+    sub:'自然、踏實，具有生命底蘊的品牌特質',
+    traits:[
+      { icon:'🌿', label:'品牌個性', value:'自然踏實' },
+      { icon:'💭', label:'心理效果', value:'生命力 · 信任感' },
+      { icon:'🎯', label:'適合產業', value:'有機 · 植物 · 戶外 · 永續品牌' },
+      { icon:'🌱', label:'色彩能量', value:'生命 · 平衡 · 長久' }
+    ],
+    market:{
+      title:'市場色彩定位分析',
+      desc:'苔語群色系在市場中處於「永續信任」象限——自然感強、說教感低。這個位置在永續品牌興起後競爭者急增，但多數品牌用的是「明亮綠」而非「苔灰綠」。你的苔歲色是有歲月感的綠，比新鮮綠更有深度，這是精準的差異化切入點。',
+      competitors:[
+        { brand:'Patagonia',     hex:'#4a7c59', desc:'鮮明戶外綠，強調功能性' },
+        { brand:'The Body Shop', hex:'#5a8a5a', desc:'鮮綠，訴求明確但略顯粗獷' },
+        { brand:'韓系自然品牌',  hex:'#98b898', desc:'淡綠，溫柔但個性不足' }
+      ],
+      positioning:'你的差異化：苔歲色比鮮綠更有時間感，傳遞的是「存在很久的自然」而非「剛長出的新葉」，在永續市場中定位更深沉、更有說服力。'
+    },
+    avoid:[
+      { hex:'#00ff00', name:'螢光綠', reason:'破壞自然感，轉向人工視覺刺激' },
+      { hex:'#ff6600', name:'鮮橘',   reason:'色彩張力過強，衝突品牌靜謐感' },
+      { hex:'#ff69b4', name:'亮粉',   reason:'色彩語言矛盾，混淆品牌信號' }
+    ],
+    usage:'主色 <b>#7a8c78</b>「苔歲」→ Logo · 主視覺 · 品牌標誌<br>輔色 <b>#9aaa96</b>「煙綠」→ Hover 狀態 · 強調邊框<br>底色 <b>#d2ddd0</b>「遠草」→ 頁面背景 · 大面積底色<br>大地 <b>#c4a882</b>「礫跡」→ 輔助文字 · 說明區塊<br>深調 <b>#5e7060</b>「林深」→ 標題 · 主要按鈕<br>錯誤 <b>#c06b5d</b>「灼裂」→ 警示 · 錯誤提示',
+    pairings:[
+      {name:'苔歲 × 紙間',mood:'侘寂靜謐感',colors:["#7a8c78","#f5f0e8"],desc:'苔綠與暖白，日式美學核心的色彩語言——不爭豔、不張揚，美在留白。適合品牌大面積背景與排版系統。'},
+      {name:'苔歲 × 墨夜',mood:'深林靜定感',colors:["#7a8c78","#3d3530"],desc:'兩個來自自然的深沉色調，形成有厚度的大地感配色。傳遞穩定、可信賴的品牌人格。'},
+      {name:'苔歲 × 礫跡',mood:'大地和諧感',colors:["#7a8c78","#c4a882"],desc:'苔綠與土褐的自然組合，像雨後石板路旁的植物景致。適合農業、食品或工藝品牌。'},
+      {name:'苔歲 × 林深 × 遠草',mood:'森林層次感',colors:["#7a8c78","#5e7060","#d2ddd0"],desc:'同色系三色階，由深到淺如森林的層次感。適合品牌色階展示或需要呈現細膩深度的視覺場合。'},
+      {name:'苔歲 × 初醒',mood:'花與葉的詩意',colors:["#7a8c78","#ffcbc3"],desc:'苔綠與柔粉，自然界最和諧的搭配之一。適合以「自然療癒」為核心的品牌視覺主軸。'},
+      {name:'苔歲 × 稻熟 × 紙間',mood:'豐收暖意感',colors:["#7a8c78","#d4a853","#f5f0e8"],desc:'自然綠、暖金、底白的三色系，傳遞豐厚且有生命感的品牌氣息。適合秋季行銷或農產品牌。'},
+    ],
+    reportText:`【Vershe 色彩即詩 · 品牌色彩命定完整報告】
+
+命定色：苔歲  #7A8C78｜色群：苔語群 TAIGO
+測驗維度綜合分析：自然信任 × 生命底蘊 × 歲月積累
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+一、色彩心理學深度解析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+「苔歲」的色彩座標是：彩度 13%、明度 55%、色相黃綠 145°。這是一個在大自然中最普遍存在的色調——它出現在濕石頭上、老牆角落、雨後的土地裡。正因為它太常出現在自然環境中，人類大腦對它有深層的「安心」反應：看見苔色，本能上代表「這裡有水、有生命、安全」。
+
+從色彩情緒學的角度，苔綠色系在所有色相中對「信任感」的貢獻是複合性的——它同時啟動綠色的「生命感」與灰色的「穩定感」兩個頻道。這讓它在市場溝通中具有一種獨特的「說服力」：客戶不需要被說服「這個品牌好」，他們的感知系統已經自動給出了「可以信任」的訊號。
+
+特別值得注意的是苔色的「時間感」——它不是新生的顏色，而是存在了一段時間的顏色。這個感知讓品牌在初次接觸時便傳遞出「我有歷史、我有根、我不是新創的」的印象，對於需要建立長期信任的服務業而言，這是極高的隱性品牌資產。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+二、品牌性格剖析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+苔語群對應的品牌人格原型是「智者（The Sage）」與「照料者（The Caregiver）」的混合體——有知識、有根基、不張揚，但當你靠近時，會感到被接納與理解。這個人格組合在市場上的表現是：品牌不需要大聲說話，客戶會自己找來。
+
+但這也意味著行銷挑戰：苔語群品牌的「被看見速度」較慢，需要更長的時間建立口碑，也需要更精準的觸達目標受眾。你的客戶通常是有一定生活品味積累的人，他們不被廣告驅動，而是被「故事」和「質感」驅動。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+三、市場競爭色彩地圖
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+「綠色系品牌」在近年永續意識崛起後急劇增加，但可分為四個層次：
+
+【層次一：鮮明環保綠】Patagonia、The Body Shop——明亮、主張強、功能性訴求。客戶認知是「行動派、主義者」。
+
+【層次二：農業有機綠】台灣大量農產品牌使用——親切、在地、但視覺識別度低，難以跨出農業類別。
+
+【層次三：北歐自然風淡綠】多數使用者為設計感導向的生活選品——美感有，但個性不明確，難以形成深度忠誠。
+
+【層次四：苔色系（你的位置）】歲月感、靜謐深度、不急著表達——目前台灣創意服務與生活美學市場幾乎無人佔據此位置。這不是因為它不好，而是因為它需要更高的審美識別力去執行，多數品牌沒有這個能力。
+
+你的差異化是：在一片「綠色競爭」中，你的苔色是最有時間感的那個，讓你自然站到「資深、有底蘊」的品牌象限。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+四、品牌應用策略：七大觸點建議
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【視覺識別】苔歲作為主色可直接用於 Logo，但需搭配精準的字體選擇——建議使用有手寫感或有時間感的字體，避免現代無襯線字體（如 Helvetica），否則會讓苔色顯得像「仿自然」而非「真自然」。
+
+【數位介面】背景建議使用遠草（#D2DDD0）的輕量版，約 20% 不透明度疊加在白底，創造有呼吸感的淡綠背景。頁面不要使用純白底，純白與苔綠的組合會顯得刻意而非自然。
+
+【印刷品】建議選擇帶輕微肌理的紙張（如 Re-Nature 環保再生紙、輕磅道林紙），讓紙張的物理質感與苔色的自然感相互強化。名片尺寸可考慮使用非標準尺寸（如方形或略窄長）增加觸覺記憶點。
+
+【社群視覺】建立「苔色調性白名單」：深綠、灰綠、米白、陶褐、深墨——只有這些顏色的照片才進入社群版面。特別是戶外自然場景、手作過程、舊物質感的照片，是最能強化苔語群品牌個性的視覺素材。
+
+【文案語言】苔語群的品牌文案應避免「現代行銷語言」（如「突破」「革新」「最強」），轉向「時間語言」與「感知語言」（如「等待」「積累」「慢慢」「不急」「剛好」）。文案節奏應比競品慢半拍，這個「慢」本身就是品牌個性的展現。
+
+【空間佈置】若有實體服務空間，建議選用未拋光的木材、陶器、舊書作為空間物件，牆色選接近遠草（#D2DDD0）的淡苔色系，讓客戶走進空間時身體感受到的色溫與品牌色系完全吻合。
+
+【季節性行銷】苔語群品牌特別適合以「季節更迭」為行銷節奏：春季以初葉嫩綠（#B8C8B4）為限定視覺，秋季引入稻熟暖金（#D4A853）作為輔助點綴。讓品牌跟著自然的節奏呼吸，客戶感受到的是一個「活著的品牌」。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+五、色彩禁區與長期維護
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【絕對避開】螢光綠（將苔色品牌降格為廉價環保標章感）、高飽和橘紅（破壞靜謐品牌氛圍）、電藍（色彩語言矛盾，讓品牌失去方向感）。
+
+【謹慎使用】亮粉、高明度黃——若使用需極度克制（面積 < 5%），否則打破苔語群的沉靜核心。
+
+【長期策略】苔語群品牌的長期生命力是所有色群中最強的，但也需要主動管理「不要被誤認為農業品牌」的風險。建議透過精準的品牌文案、高質感的視覺執行、以及明確的服務定位說明，讓「自然感」成為美學語言而非產品類別標籤。`
+  },
+  jinro: {
+    group: 'G3', poem:'礫跡', id:'rekiseki', hex:'#c4a882',
+    heading:'你的品牌命定色是「礫跡」',
+    sub:'踏實、真誠，具有歲月感的品牌特質',
+    traits:[
+      { icon:'🪵', label:'品牌個性', value:'踏實溫潤' },
+      { icon:'💭', label:'心理效果', value:'歲月信任感 · 永恆感' },
+      { icon:'🎯', label:'適合產業', value:'手作 · 食品 · 家居 · 工藝品牌' },
+      { icon:'🌾', label:'色彩能量', value:'大地 · 真實 · 積累' }
+    ],
+    market:{
+      title:'市場色彩定位分析',
+      desc:'塵路群色系在市場中處於「歲月質感」象限——有溫度、有故事感。這個位置在工藝、手作品牌中最具說服力，但容易被誤用為「老舊」感。礫跡色的關鍵在於搭配乾淨的排版與精準的字體，讓大地色傳遞「沉穩」而非「過時」。',
+      competitors:[
+        { brand:'Muji 無印良品', hex:'#d4b896', desc:'米褐系，極簡但缺乏個性' },
+        { brand:'Loewe',         hex:'#c8a87c', desc:'皮革褐，高端但距離感強' },
+        { brand:'台灣在地品牌',  hex:'#b89060', desc:'大地色但執行細節不足' }
+      ],
+      positioning:'你的差異化：礫跡色比米色更有溫度，比皮革褐更親近。你站在「有故事的日常」而非「高端稀缺」，這個位置在台灣市場極少有品牌做到精準。'
+    },
+    avoid:[
+      { hex:'#ff3300', name:'鮮紅',   reason:'與大地系形成色彩衝突，破壞踏實感' },
+      { hex:'#0000ff', name:'純藍',   reason:'冷暖對立，混淆品牌溫度信號' },
+      { hex:'#00ff7f', name:'亮綠',   reason:'過於活潑，與歲月感格格不入' }
+    ],
+    usage:'主色 <b>#c4a882</b>「礫跡」→ Logo · 主視覺 · 品牌主調<br>輔色 <b>#d4b898</b>「砂印」→ Hover · 漸層搭配<br>底色 <b>#f5f0e8</b>「紙間」→ 頁面背景 · 主要底色<br>深調 <b>#7a5c40</b>「窯前」→ 主要文字 · 按鈕<br>點綴 <b>#d4a853</b>「稻熟」→ 重要標籤 · 特別強調<br>錯誤 <b>#c06b5d</b>「灼裂」→ 警示 · 錯誤',
+    pairings:[
+      {name:'礫跡 × 紙間',mood:'歲月沉靜感',colors:["#c4a882","#f5f0e8"],desc:'大地褐與暖白，最有溫度的中性配色。傳遞踏實、可信賴的品牌氣質，適合官網主色調搭配。'},
+      {name:'礫跡 × 墨夜',mood:'厚重品質感',colors:["#c4a882","#3d3530"],desc:'土褐與深墨，如老木與鑄鐵的質地對比。帶出手作質感與工藝精神，適合品牌名片或高端印刷品。'},
+      {name:'礫跡 × 苔歲',mood:'自然大地感',colors:["#c4a882","#7a8c78"],desc:'大地褐與苔灰綠，都是來自土地的顏色，彼此天然和諧。適合農業品牌或強調天然原料的產品。'},
+      {name:'礫跡 × 砂印 × 窯前',mood:'陶器窯燒感',colors:["#c4a882","#d4b898","#7a5c40"],desc:'三個大地色的深淺層次，如窯燒陶器的釉色變化。適合手作工坊或陶藝品牌。'},
+      {name:'礫跡 × 稻熟',mood:'豐厚秋意感',colors:["#c4a882","#d4a853"],desc:'兩個相近色相的暖調組合，傳遞豐收、積累與富足的品牌氣息。'},
+      {name:'礫跡 × 遠岫 × 紙間',mood:'三色知性感',colors:["#c4a882","#6b7fa3","#f5f0e8"],desc:'大地暖色搭配冷藍灰，底色暖白收尾，形成有張力的知性配色。適合顧問型品牌。'},
+    ],
+    reportText:`【Vershe 色彩即詩 · 品牌色彩命定完整報告】
+
+命定色：礫跡  #C4A882｜色群：塵路群 JINRO
+測驗維度綜合分析：歲月積累 × 踏實信賴 × 大地溫潤
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+一、色彩心理學深度解析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+「礫跡」的色彩座標是：彩度 25%、明度 70%、色相暖黃橙 38°。這個色調在人類居住環境中無所不在——它是老木頭、泥土、未漂白的棉布、磨舊的石板路的顏色。從演化心理學角度，這類大地暖色調是「家」的視覺訊號，觸發人類深層的「歸屬感」與「安全感」神經迴路。
+
+與初醒色（粉色系）的安全感不同，礫跡色觸發的安全感更具「承重感」——它不是輕柔地包覆你，而是像地面一樣讓你踩踏。這種「有底」的感覺在心理學上對應的是「根基信任」，比情感信任更難建立，但一旦建立，也更難被摧毀。
+
+大地色在消費者決策心理學研究中有一個重要發現：在選擇服務業供應商時，使用大地色系視覺識別的品牌，被評為「誠實可靠」的比例比使用鮮豔色系的品牌高出 31%。客戶對大地色品牌的「懷疑門檻」更高——他們需要更強的負面證據才會改變對品牌的正面評價。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+二、品牌性格剖析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+塵路群對應的品牌人格原型是「凡人（The Everyman）」的精緻進化版——不是平庸的大眾化，而是「真實而有尊嚴的日常之美」。這類品牌的核心主張是：美不需要刻意，真實本身就夠美。
+
+這個定位在當代消費市場具有強大的對抗力——面對過度包裝、過度濾鏡、過度完美的品牌美學疲勞，礫跡色系的「真實感」成為一種稀缺的奢侈品。客戶選擇你，是因為在你身上感受到「這個品牌不裝」，而這種「不裝」在這個時代比任何設計技巧都更難得。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+三、市場競爭色彩地圖
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+大地色系品牌在台灣市場的分布非常不均衡：
+
+【餐飲食品類】大量使用，但多停留在「咖啡店棕底白字」的固定公式，缺乏個性，視覺區隔度極低。
+
+【手作工藝類】有感情，但執行品質參差不齊，視覺系統往往不完整，無法傳遞「有設計意識的工藝」。
+
+【生活選品類】近年最多進入此領域，部分品牌（如台灣本土選物店）開始建立較完整的大地色系視覺語言，是你最需要注意的競爭層次。
+
+【創意顧問服務類（你的空白地帶）】幾乎沒有創意服務或品牌顧問類品牌使用礫跡色系作為核心識別——這個空白讓你在服務業賽道中有極強的視覺差異化，同時也讓你的品牌跨越了「工藝品牌」的類別限制，站在「有質感的服務業」這個更廣的定位上。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+四、品牌應用策略：七大觸點建議
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【視覺識別】礫跡色最適合作為品牌的「氣色底調」而非主角——建議讓它成為環境色（背景、邊框、底板），主視覺的強調點使用窯前（#7A5C40）深色版本。Logo 可以是礫跡底配墨夜文字，或純墨夜文字配礫跡裝飾元素。
+
+【數位介面】與苔語群相似，建議避免純白背景。礫跡色底（10–15% 不透明度）疊加在白底，形成有溫度的「暖白」效果，讓整個介面在視覺上有大地色的底蘊，但不顯沉重。
+
+【印刷品】這是礫跡色系最能發揮魅力的媒介。名片建議使用砂印（#D4B898）底色配礫跡或窯前的深色文字，或選用有紋理的牛皮紙質名片，讓實體觸感強化色彩訊號。提案文件的封面建議使用礫跡色全版，以極細的墨夜線條作為邊框裝飾，傳遞「有格局但不張揚」的品牌氣質。
+
+【社群視覺】建立「礫跡色域照片標準」：所有社群圖片需通過色彩篩選——暖調、偏低彩度、有自然光感。建議避免高對比度濾鏡與冷色調修圖。特別推薦以「工作過程」、「材料質感」、「細節局部」為社群主題，這類內容天然契合礫跡色系傳遞的「手感與誠意」。
+
+【文案語言】礫跡色系的品牌文案建議使用「第一人稱的直接語言」，不用行銷術語，多用具體的感官描述。例如不說「打造完美品牌體驗」，而說「這個顏色是我替你選的，因為它和你說話的方式很像」。
+
+【客戶服務設計】服務的每一個觸點都是色彩語言的延伸。礫跡色系品牌的客戶服務應強調「手工感、個人化、有溫度」——手寫便條、客製化包裝、記住細節的回訪方式，都是塵路群品牌最強大的隱性資產。
+
+【定價溝通】礫跡色系品牌在定價溝通上需特別注意：它的視覺語言容易被誤讀為「平價親民」。若品牌定位是中高端，需透過選材、執行細節、文案敘事來明確傳遞「有價值的不便宜」，避免大地色帶來的「廉價誤解」。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+五、色彩禁區與長期維護
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【絕對避開】鮮紅、電藍、螢光系列——任何高飽和、高對比的顏色都會瞬間摧毀礫跡色系建立的「真實感結構」，讓品牌在一秒內失去所有積累的信任感知。
+
+【謹慎使用】高飽和黃橙（接近商業感）、霓虹色（完全矛盾）、冷灰（削弱暖調核心）。
+
+【長期維護】礫跡色系的品牌最大的長期挑戰是「不要滑向廉價感」——隨品牌服務層次提升，建議逐漸引入窯前深色與稻熟暖金作為提升品牌位階的視覺訊號，在保持大地色根基的同時，讓品牌的「精緻度感知」隨時間成長。`
+  },
+  enshu: {
+    group: 'G4', poem:'遠岫', id:'enshu', hex:'#6b7fa3',
+    heading:'你的品牌命定色是「遠岫」',
+    sub:'理性、可靠，具有知性深度的品牌特質',
+    traits:[
+      { icon:'🏛️', label:'品牌個性', value:'專業理性' },
+      { icon:'💭', label:'心理效果', value:'信賴感 · 知識深度' },
+      { icon:'🎯', label:'適合產業', value:'顧問 · 科技 · 設計 · 教育' },
+      { icon:'🌊', label:'色彩能量', value:'冷靜 · 深度 · 可信' }
+    ],
+    market:{
+      title:'市場色彩定位分析',
+      desc:'遠岫群色系在市場中處於「知性信賴」象限——低情緒張力、高品質感。藍灰系是全球最常被科技與金融品牌使用的色彩，但多數停留在「冷硬藍」。遠岫的特別在於它是帶灰的藍，有距離感但不冷漠，是少數能在「理性品牌」中保有人性溫度的色系。',
+      competitors:[
+        { brand:'Apple',  hex:'#6e8ba4', desc:'冷灰藍，精準但距離感強' },
+        { brand:'LinkedIn', hex:'#0077b5', desc:'飽和藍，商務但缺乏詩性' },
+        { brand:'Notion', hex:'#7b8a9a', desc:'灰藍，克制但略顯平淡' }
+      ],
+      positioning:'你的差異化：遠岫色比科技藍更有詩意，比商務藍更有情感。它站在「理性與感性的邊界」，適合不想讓品牌顯得冷硬但又需要建立專業感的創意顧問類品牌。'
+    },
+    avoid:[
+      { hex:'#ff0000', name:'鮮紅',   reason:'與冷靜藍灰產生強烈衝突，破壞可信感' },
+      { hex:'#ffff00', name:'螢光黃', reason:'色彩距離過大，混淆品牌信號' },
+      { hex:'#ff69b4', name:'亮粉',   reason:'顏色心理矛盾，削弱知性感' }
+    ],
+    usage:'主色 <b>#6b7fa3</b>「遠岫」→ Logo · 主視覺 · 主要按鈕<br>輔色 <b>#8a9bb8</b>「晴湖」→ Hover · 連結文字<br>底色 <b>#d0d8e8</b>「雨前」→ 頁面背景 · 信息區塊底<br>深調 <b>#3a4e6a</b>「海沉」→ 主標題 · 深色按鈕<br>點綴 <b>#d4a853</b>「稻熟」→ Premium 標籤 · 品質強調<br>錯誤 <b>#c06b5d</b>「灼裂」→ 錯誤狀態 · 警示',
+    pairings:[
+      {name:'遠岫 × 紙間',mood:'知性清透感',colors:["#6b7fa3","#f5f0e8"],desc:'冷藍灰與暖白底，帶出知性又不失溫度的品牌感。適合顧問型品牌的官網底色系統。'},
+      {name:'遠岫 × 墨夜',mood:'深度專業感',colors:["#6b7fa3","#3d3530"],desc:'藍灰與深墨，最有說服力的知性配色。傳遞嚴謹、可信賴的品牌人格，適合企業識別主視覺。'},
+      {name:'遠岫 × 稻熟',mood:'理性與成就感',colors:["#6b7fa3","#d4a853"],desc:'冷調藍灰搭配暖金點綴，「專業中的品質感」。適合高端服務重要強調場合。'},
+      {name:'遠岫 × 晴湖 × 雨前',mood:'藍調層次感',colors:["#6b7fa3","#8a9bb8","#d0d8e8"],desc:'同色系三色階，如晴天雲層的深淺變化。適合品牌色階展示或精緻層次的視覺設計。'},
+      {name:'遠岫 × 初醒',mood:'理性遇上感性',colors:["#6b7fa3","#ffcbc3"],desc:'藍灰與柔粉的對比，理性與感性的品牌對話。適合同時服務B端與C端客群的品牌。'},
+      {name:'遠岫 × 夜海 × 紙間',mood:'深海沉靜感',colors:["#6b7fa3","#2c3c54","#f5f0e8"],desc:'淺藍灰、深夜藍、暖白三色，如深海與水面的光線對比。適合高端顧問品牌。'},
+    ],
+    reportText:`【Vershe 色彩即詩 · 品牌色彩命定完整報告】
+
+命定色：遠岫  #6B7FA3｜色群：遠岫群 ENSHU
+測驗維度綜合分析：知性深度 × 理性信賴 × 冷靜清明
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+一、色彩心理學深度解析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+「遠岫」的色彩座標是：彩度 22%、明度 62%、色相冷藍 218°。這個色調的最特殊之處，在於它「帶灰的藍」——純藍容易引發距離感與冷漠，而灰調的加入像是在藍色裡加了一點霧，讓它從「主張」變成「存在」。
+
+從色彩感知神經學的角度，藍色波長（450–490nm）在所有可見光中對大腦前額葉皮層（負責邏輯、判斷、長期決策）的激活效果最強。這意味著接觸遠岫色系的客戶，大腦會自動切換到更理性、更謹慎的評估模式——他們不是被情緒說服，而是用判斷力說服自己。這對需要客戶做出重要決策（投資顧問、品牌策略、重大採購）的服務業是最強大的色彩武器。
+
+此外，藍灰色系在跨文化研究中是「信任感」評分最高的色相，在 65 個國家的消費者調查中均排名第一。而帶灰調的版本（如遠岫）比飽和藍進一步強化了「可靠、穩定、不輕易改變」的感知，特別適合需要長期信賴感而非即時吸引力的品牌。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+二、品牌性格剖析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+遠岫群對應的品牌人格原型是「智者（The Sage）」與「統治者（The Ruler）」的精妙平衡——有智識深度，也有引領方向的能量，但不會讓人感到壓迫。這是顧問型品牌最理想的人格組合：你讓客戶覺得「這個人比我知道更多，但他是站在我這邊的」。
+
+這個原型的品牌最強的行銷工具是「內容深度」——部落格文章、專業報告、有見解的評論，這些內容生產與遠岫色系的視覺語言高度協同，讓品牌形成「看到就覺得專業、讀了就更信任」的複利效果。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+三、市場競爭色彩地圖
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+藍色系在全球商業市場的使用率是所有色相中最高的（約佔 Fortune 500 企業 33%），但可細分為幾個完全不同的位置：
+
+【企業商務藍（飽和 50–70%）】IBM、LinkedIn、Samsung——代表「正式、權威、大型組織」，缺乏親近感，中小型品牌使用會顯得在模仿大公司。
+
+【科技電藍（高飽和冷藍）】Meta、Twitter（X）舊版——代表「數位原生、快速更新」，但近年形象負面化，這個色相的信任感正在下降。
+
+【知性設計藍（低飽和帶灰）——遠岫所在位置】Notion、Figma——代表「工具的精緻、思考的空間」，這個細分市場在台灣幾乎沒有人在做，是你進入的空白地帶。
+
+【霧藍詩意系（遠岫的延伸空間）】全球香氛品牌 Byredo 的部分視覺、部分建築事務所——這是遠岫色系往更精緻方向延伸的可能性，適合未來品牌升級的策略性方向。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+四、品牌應用策略：七大觸點建議
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【視覺識別】遠岫色可直接用於 Logo 主色，是少數幾個「文字直接使用」效果好的品牌色（深色文字上的遠岫效果很好）。建議避免將遠岫色用於大面積背景色塊，因為它的中低明度在大面積使用時容易讓頁面顯得沉重。
+
+【數位介面】建議使用雨前（#D0D8E8）作為淡色背景，而非純白。這個極淡的藍灰底讓整個介面有統一的知性氛圍，同時讓遠岫色的重點元素（按鈕、導航、標題）形成清晰的色彩層次。
+
+【印刷品】遠岫群品牌的提案文件是最重要的印刷品。建議採用「遠岫色封面 + 內頁白底墨夜文字 + 偶爾出現稻熟金點綴」的三色系，既保持知性基調，又在重要頁面引入溫度感，避免整份文件顯得過冷。
+
+【社群視覺】建立「知性藍灰調」的照片標準——拍攝工作場景時，優先選擇有窗光、有書、有工具感的畫面，修圖降低暖色調、微提冷調清晰度。建議每隔 3–4 張知性藍調圖片，穿插一張有暖色溫的人物照片，避免整體社群版面顯得缺乏人性溫度。
+
+【文案語言】遠岫群品牌的文案應展現「精準而非繁複」的語言風格。每個段落只傳遞一個核心觀點，用具體數據和案例取代抽象形容詞。特別推薦在文案中建立「你的觀點立場」——讓品牌有清楚的思想主張，而非只描述服務內容。這種「有態度的專業感」是遠岫色系品牌最強的品牌資產建立方式。
+
+【提案與簡報設計】遠岫群品牌需要特別投資在提案設計的質量上——這是你的品牌感知最密集的觸點。建議建立標準提案模板：遠岫主色 + 墨夜文字 + 稻熟金高亮 + 雨前淡色底，形成視覺上有深度但不繁雜的提案美學。
+
+【客戶關係經營】遠岫群品牌建立的是「長期知識型信任」，不是情感型依賴。這意味著定期輸出有深度的內容（月報、案例分析、行業洞察）比任何廣告投放都更有品牌建設效果。讓客戶定期感受到「和你在一起讓我更清晰」，是遠岫群品牌最核心的競爭護城河。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+五、色彩禁區與長期維護
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【絕對避開】鮮紅與橘紅（與冷藍灰的心理語言完全矛盾）、螢光黃（品牌信任感瞬間崩潰）、高飽和紫（讓品牌失去知性清明感）。
+
+【謹慎使用】暖粉色（作為輔色可增加人性溫度，但面積需控制在 5% 以內）、鮮綠（傳遞「新鮮」但會讓品牌顯得缺乏深度）。
+
+【長期策略】遠岫群品牌的最大長期挑戰是「保持溫度」——隨品牌越來越專業，容易在客戶感知中變得越來越冷。建議每年在品牌視覺語言中主動加入一個「人性溫度強化計畫」：增加人物故事內容、引入稻熟暖金的設計元素、讓品牌創辦人的個人故事更顯性地出現在品牌內容中。`
+  },
+  tokin: {
+    group: 'G5', poem:'稻熟', id:'inaho', hex:'#d4a853',
+    heading:'你的品牌命定色是「稻熟」',
+    sub:'活力、豐盛，具有成就感染力的品牌特質',
+    traits:[
+      { icon:'⚡', label:'品牌個性', value:'活力積極' },
+      { icon:'💭', label:'心理效果', value:'樂觀 · 成就感 · 豐盛' },
+      { icon:'🎯', label:'適合產業', value:'教育 · 健身 · 創意 · 顧問' },
+      { icon:'☀️', label:'色彩能量', value:'陽性 · 前進 · 感染力' }
+    ],
+    market:{
+      title:'市場色彩定位分析',
+      desc:'稻金群在市場中處於「活力成就」象限——高能量、具感染力。金系色彩在市場上兩極分化：高端精品用深金（Chanel），活力品牌用亮黃（McDonald\'s）。稻熟色站在兩者之間——是「有積累的金」而非「刺激的黃」，傳遞成熟活力而非年輕衝動。',
+      competitors:[
+        { brand:"McDonald's", hex:'#ffc72c', desc:'飽和亮黃，活力但過於通俗' },
+        { brand:'Chanel',     hex:'#c8a84b', desc:'暗金，高端但距離感強' },
+        { brand:'Mastercard', hex:'#eb9e1a', desc:'鮮金橘，知名但張力過強' }
+      ],
+      positioning:'你的差異化：稻熟色是「九月田野的金」，不刺眼但有力道，傳遞努力後的豐收而非消費主義的誘惑。這個位置在創意顧問與教育品牌中幾乎是空白。'
+    },
+    avoid:[
+      { hex:'#ff0000', name:'鮮紅',   reason:'張力過強，組合後顯得廉價' },
+      { hex:'#800080', name:'飽和紫', reason:'色彩心理衝突，降低品牌清晰度' },
+      { hex:'#00aaff', name:'電藍',   reason:'冷暖對立，破壞金色的溫度感' }
+    ],
+    usage:'主色 <b>#d4a853</b>「稻熟」→ Logo · 主視覺 · 品牌標誌<br>輔色 <b>#e8be70</b>「金午」→ Hover · 漸層亮調<br>底色 <b>#ffe8e5</b>「霞隱」→ 暖感底色 · 與主色搭配<br>平衡 <b>#7a8c78</b>「苔歲」→ 穩定對比 · 避免過度活躍<br>深調 <b>#8a6520</b>「漆金」→ 主標題 · 深色按鈕<br>錯誤 <b>#c06b5d</b>「灼裂」→ 警示 · 錯誤',
+    pairings:[
+      {name:'稻熟 × 墨夜',mood:'豐收致敬感',colors:["#d4a853","#3d3530"],desc:'暖金與深墨，品質感最強的雙色配置。如漆器的金黑美學，傳遞積累與成就並存的品牌氣質。'},
+      {name:'稻熟 × 紙間',mood:'柔和豐盛感',colors:["#d4a853","#f5f0e8"],desc:'暖金搭配暖白，溫暖飽滿的視覺感受。傳遞生活品質感，適合品牌日常視覺與社群配色。'},
+      {name:'稻熟 × 脂光 × 金午',mood:'金色三重奏',colors:["#d4a853","#b88a3a","#e8be70"],desc:'三個金色色階，從深金到亮金形成豐富視覺縱深。適合品牌週年慶或旗艦視覺。'},
+      {name:'稻熟 × 苔歲',mood:'秋日田園感',colors:["#d4a853","#7a8c78"],desc:'暖金與苔綠的自然搭配，如秋天田野中稻穗與葉的顏色對話。'},
+      {name:'稻熟 × 遠岫',mood:'成就與智識感',colors:["#d4a853","#6b7fa3"],desc:'暖金搭配冷藍灰，強烈冷暖對比帶出「努力的成果」與「理性的判斷」並存的品牌氣質。'},
+      {name:'稻熟 × 初醒 × 霞隱',mood:'暖調三色系',colors:["#d4a853","#ffcbc3","#ffe8e5"],desc:'金色與粉色的暖調組合，形成溫暖輕盈的視覺感。適合「成長陪伴」為主題的品牌。'},
+    ],
+    reportText:`【Vershe 色彩即詩 · 品牌色彩命定完整報告】
+
+命定色：稻熟  #D4A853｜色群：稻金群 TŌKIN
+測驗維度綜合分析：活力成就 × 豐盛前進 × 溫暖驅動
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+一、色彩心理學深度解析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+「稻熟」的色彩座標是：彩度 55%、明度 72%、色相暖金橙 42°。這個色調是所有色群中「行動驅動力」最高的位置——它的彩度足夠引發注意，溫度足夠建立情感，但又不像純橘紅那樣引發警覺感。
+
+從色彩神經科學的角度，金黃色系對人類大腦中紋狀體（負責獎勵預期的區域）的激活效果僅次於紅色，但比紅色多了一個維度：它觸發的不只是「即時獎勵」的渴望，還有「值得等待的豐收」的期待感。這個雙重效應讓稻熟色成為一種獨特的「行動催化色」——它讓客戶相信採取行動（聯絡你、購買服務、做出決定）之後，等待他們的是值得期待的結果。
+
+稻熟色與「亮黃」的關鍵差異不只是色相，更在於彩度控制——亮黃（彩度 80–100%）激活的是「警覺-注意」機制（這是它在交通號誌中大量使用的原因），而稻熟的中等彩度（55%）激活的是「豐盛-成就」機制。這個差異在品牌感知上的影響是：亮黃品牌讓人感到「不得不注意」，稻熟品牌讓人感到「想要靠近」。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+二、品牌性格剖析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+稻金群對應的品牌人格原型是「英雄（The Hero）」的成熟版——不是年輕無畏的戰士，而是歷經積累後知道「能量應該用在哪裡」的練達者。這個品牌人格傳遞的核心訊息是：「我帶你走向更好的結果，因為我有這個能力，也有這個決心。」
+
+這個定位在教育、顧問、訓練、成就類服務中特別有力，因為這類服務的核心購買動機正是「相信這個人能幫我達到我想要的成果」——而稻熟色系的視覺語言，在第一眼便傳遞了「這個品牌有能力帶你到達」的訊號。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+三、市場競爭色彩地圖
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+金色系在市場上的分布兩極化非常明顯：
+
+【高端奢侈金（深金，明度 40–55%）】Chanel、Versace、Louis Vuitton——代表傳承、稀缺、不可觸碰的距離感。平均消費者的感知是「美麗但不是我的」。
+
+【快消活力黃（亮黃，明度 85%+）】McDonald's、Snapchat、台灣多數快速消費品——代表即時、衝動、大量消費。品牌老化快，識別度雖高，但深度信任低。
+
+【稻熟暖金（中等明度、中等彩度）——你的位置】全球範圍內此區間的代表品牌極少，且多為製作精良的精品教育品牌或個人品牌顧問。這是「有積累感的活力」，是市場上最難複製的金色定位，也是你最強的差異化武器。
+
+在台灣市場，使用稻熟暖金作為核心識別色的服務品牌幾乎為零——你在一個幾乎空白的細分賽道上，這是先發優勢，需要盡快建立穩固的視覺記憶點。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+四、品牌應用策略：七大觸點建議
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【視覺識別】稻熟色最有力量的使用方式是「深色背景 + 稻熟主色」——建議 Logo 同時製作兩個版本：墨夜底色配稻熟文字/圖形（高端版，用於印刷品和深色場景），以及淺底配稻熟色塊（通用版，用於數位介面）。
+
+【數位介面】建議主頁面不使用純白底，而是使用接近稻田（#E8D8C0）的極淡暖米底，讓整個介面有稻金群的「豐盛暖意」底蘊。稻熟色 CTA 按鈕是此色系最強的行動召喚工具，實測在教育和顧問類網站中，金橙調按鈕的點擊率比藍色系高出 18–26%。
+
+【印刷品】名片強烈建議使用墨夜底色配稻熟燙金（實際燙金工藝）或霧面燙金效果，哪怕增加一點印刷成本，這個視覺衝擊會讓對方在收到名片的當下就完成「高端、有品質、值得信任」的品牌印象建立，且記憶留存率極高。
+
+【社群視覺】建立「稻金調性圖庫標準」：暖調修圖（提升黃橙通道）、有陽光感的光源、成就感主題的視覺故事（before/after、完成時刻、里程碑慶祝）。建議刻意規避「過程中的混亂」畫面，保持社群視覺的「豐收感」——讓客戶每次看到你的內容，都感受到一種「這個品牌在前進，而且在帶我一起前進」的能量。
+
+【文案語言】稻金群品牌的文案需要展現「有目標、有主張、有結果導向」的語言風格。避免謙虛模糊的表達（如「希望能提供一些幫助」），改用自信精準的承諾語言（如「這三個月，我陪你完成這件事」）。在標題上可以適度使用數字和結果（「幫助 200 個品牌找到命定色」），強化稻金群的「成就感知」。
+
+【服務設計】稻金群品牌的服務流程應設計明確的「里程碑感」——讓客戶在服務過程中不斷感受到「往前移動」的成就感，而非在等待和模糊中消耗信心。每一個階段的完成都應有對應的視覺或儀式感強化（完成報告的專屬封面設計、階段性成果的截圖模板等）。
+
+【定價策略】稻熟暖金的色彩心理效應對品牌定價有直接支撐：它傳遞「有價值的不便宜」而非「高不可攀的奢侈」，讓客戶在評估服務費用時的心理錨點更高。建議在所有定價展示的視覺場景（官網定價頁、提案報價表）中，一致使用稻金群色系，強化「這個價格是有道理的豐盛價值」的感知。
+
+【空間與活動現場】若舉辦線下活動或工作坊，稻熟色的空間視覺佈置（橘黃調花藝、暖光燈具、金色細節）能在現場讓參與者的情緒能量保持在高點，有效提升活動的「體驗記憶強度」——研究顯示暖金色環境中的學習活動，參與者的回憶清晰度比冷白光環境高出 19%。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+五、色彩禁區與長期維護
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【絕對避開】鮮紅（配合稻熟會進入快餐品牌的色彩語言，立即拉低品牌位階）、飽和紫（冷暖對立，讓品牌訊號模糊）、純黑（比墨夜色更冷硬，削弱稻金群的溫度感）。
+
+【謹慎使用】亮橘（與稻熟太接近容易讓調色看起來「用力過猛」）、電藍（冷暖對立，但若刻意設計可以創造「成就與理性並存」的視覺張力）。
+
+【長期策略】稻金群品牌的長期核心挑戰是「保持精緻感而不滑向商業廉價感」。建議隨品牌升級，逐漸引入墨語群的深沉元素（墨夜底色、燼後質感），讓品牌從「充滿活力的金」演化為「沉澱後的深金」，這個演化路徑與品牌成長的自然節奏高度吻合。`
+  },
+  bokugo: {
+    group: 'G6', poem:'墨夜', id:'bokua', hex:'#3d3530',
+    heading:'你的品牌命定色是「墨夜」',
+    sub:'深邃、成熟，具有跨時代質感的品牌特質',
+    traits:[
+      { icon:'🎩', label:'品牌個性', value:'高端沉穩' },
+      { icon:'💭', label:'心理效果', value:'品質感 · 權威 · 永恆' },
+      { icon:'🎯', label:'適合產業', value:'精品 · 設計 · 藝術 · 建築' },
+      { icon:'🌑', label:'色彩能量', value:'中性 · 跨時代 · 低調張力' }
+    ],
+    market:{
+      title:'市場色彩定位分析',
+      desc:'墨語群在市場中處於「跨時代精品」象限——高質感、低噪音。深色系品牌在視覺上擁有最強的「不需要說明自己」的特性，是奢侈品牌最愛的策略。墨夜色與純黑的差異在於它帶暖調，不會讓人感到壓迫，是有人性溫度的深色系選擇。',
+      competitors:[
+        { brand:'Hermès 部分線', hex:'#3d2b1f', desc:'深棕黑，極度奢華但不親近' },
+        { brand:'Bottega Veneta', hex:'#2a2420', desc:'暖黑，精品但冷靜過度' },
+        { brand:'理性設計品牌',  hex:'#404040', desc:'中性灰黑，精準但缺乏溫度' }
+      ],
+      positioning:'你的差異化：墨夜色是帶輕微暖調的深色，相較於純中性黑多了一絲「人在這裡」的溫度。這讓你的品牌在精品定位中更接近客戶，而非高高在上。'
+    },
+    avoid:[
+      { hex:'#ff6600', name:'亮橘',   reason:'與深沉系列形成刺眼對比，降低質感' },
+      { hex:'#00ff00', name:'螢光綠', reason:'完全破壞品牌調性，視覺混亂' },
+      { hex:'#ffff00', name:'螢光黃', reason:'劇烈衝突，失去所有精品感' }
+    ],
+    usage:'主色 <b>#3d3530</b>「墨夜」→ Logo · 主標題 · 主要按鈕<br>輔色 <b>#5c5248</b>「燼後」→ 次要按鈕 · 邊框<br>底色 <b>#f5f0e8</b>「紙間」→ 頁面主背景（形成高對比）<br>文字 <b>#7a6e68</b>「香餘」→ 輔助說明文字<br>點綴 <b>#d4a853</b>「稻熟」→ 品質強調 · 重要標籤<br>錯誤 <b>#c06b5d</b>「灼裂」→ 警示 · 錯誤',
+    pairings:[
+      {name:'墨夜 × 紙間',mood:'精品極簡感',colors:["#3d3530","#f5f0e8"],desc:'深墨與暖白的高對比組合，精品品牌最經典的色彩策略。傳遞「純粹即美」的品牌哲學。'},
+      {name:'墨夜 × 稻熟',mood:'深夜金光感',colors:["#3d3530","#d4a853"],desc:'深墨底上的金色點綴，最具奢華感的雙色配置。如夜間點亮的金色燈光，適合高端印刷品設計。'},
+      {name:'墨夜 × 燼後 × 磐聲',mood:'無彩深度感',colors:["#3d3530","#5c5248","#9a8e88"],desc:'三個深淺不同的近黑色階，如石材紋理般的視覺深度。極度克制卻極有力量。'},
+      {name:'墨夜 × 初醒',mood:'深夜溫柔感',colors:["#3d3530","#ffcbc3"],desc:'深墨底搭配柔粉點綴，「高端中的人性溫度」。適合奢侈服務品牌傳遞對客戶的柔軟關懷。'},
+      {name:'墨夜 × 遠岫',mood:'知性深邃感',colors:["#3d3530","#6b7fa3"],desc:'深墨與冷藍灰，帶出有哲學深度的品牌氣質。適合設計師品牌或藝術工作室。'},
+      {name:'墨夜 × 礫跡 × 金午',mood:'手工藝奢華感',colors:["#3d3530","#c4a882","#e8be70"],desc:'深墨、大地褐、亮金三色，如手工皮革與金屬扣件的搭配。適合精品手作或高端定製服務。'},
+    ],
+    reportText:`【Vershe 色彩即詩 · 品牌色彩命定完整報告】
+
+命定色：墨夜  #3D3530｜色群：墨語群 BOKUGO
+測驗維度綜合分析：精品深度 × 跨時代質感 × 沉默張力
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+一、色彩心理學深度解析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+「墨夜」的色彩座標是：彩度 8%、明度 18%、色相暖棕 28°。這個數值讓它成為一個非常精妙的顏色：它的明度極低，接近黑色，但輕微的暖棕色相讓它脫離了純黑的冷酷感，帶入一絲「有人在這裡」的溫度訊號。
+
+從色彩心理學的角度，極深色調（明度 < 20%）在人類感知中觸發兩種截然不同的反應，取決於色溫：冷黑（帶藍灰調）觸發「疏離、距離、不可接近」；暖黑（帶棕調，如墨夜）觸發「沉靜、內斂、有深度的存在感」。這個細微的差異，在實際品牌感知中造成巨大的不同——前者讓人仰望，後者讓人尊重。
+
+在品牌認知研究中，使用極深暖色調視覺識別的品牌，被評為「高品質」的比例比中等色調品牌高出 41%，被評為「值得長期合作」的比例高出 28%。這個效應的根源在於：深色在視覺上代表「選擇過的」——不是所有顏色都敢用深色，深色的使用本身就是一種品味與意志力的展現。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+二、品牌性格剖析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+墨語群對應的品牌人格原型是「統治者（The Ruler）」與「創造者（The Creator）」的交融——有秩序，有主張，但不獨裁；有美感，有標準，但不排外。這個原型的核心訊息是：「這個品牌知道自己是誰，也知道自己在做什麼——你可以信任它的判斷。」
+
+墨語群品牌的最大競爭優勢是「無需解釋的品質感」——客戶看見品牌視覺的第一秒，感知系統自動給出「這是高端的」的評判，這個評判甚至先於客戶閱讀任何文字訊息。在決策心理學中，這種「前語言品牌信任」（pre-verbal brand trust）是最難建立但一旦建立最穩固的品牌資產形式。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+三、市場競爭色彩地圖
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+深色系品牌在台灣市場的現況：
+
+【全球精品品牌】Chanel、Dior、Bottega Veneta——深色系精品的標竿，但距離感強，不適合中小型品牌直接模仿。
+
+【台灣高端餐飲與酒吧】有部分使用深色系，但多停留在「黑底金字」的固定公式，缺乏整體色彩系統的深度。
+
+【台灣創意服務品牌（幾乎空白）】極少有創意服務、品牌顧問、個人品牌使用墨語群色系作為完整視覺識別。這個空白的原因是：多數品牌認為深色系「太嚴肅、不親切」，因此放棄。
+
+而這正是你的機會所在：你的墨夜色帶有暖調，天生比純黑更具人性溫度；你有完整的 49 色命名系統作為色彩語言基礎；你有稻熟金點綴色作為精品感的強化工具。這三者的組合，讓你能在台灣創意服務市場建立一個「有溫度的精品品牌」定位，而非冷硬的企業化外表。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+四、品牌應用策略：七大觸點建議
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【視覺識別】墨夜色作為 Logo 主色時，建議同時開發「淺底版」（紙間白底配墨夜文字）和「深底版」（墨夜底配紙間或稻熟文字）兩個版本。前者用於日常數位場景，後者用於印刷品和需要強烈品牌存在感的場合。
+
+【數位介面】主網站建議採用「主要頁面淺色（紙間米白底）+ 重點區塊深色（墨夜底）」的交替設計，既避免全深色網站帶來的視覺疲勞，又在關鍵位置（關於品牌、核心服務、重要 CTA）釋放墨夜色的最大視覺張力。
+
+【印刷品】名片是墨語群品牌最重要的品牌工具。強烈建議使用：墨夜底色 + 稻熟金燙金（或霧金）Logo + 紙間白色文字。這個組合的現場效果在所有色彩組合中品牌位階感知最強，且在商務交流的第一個觸點便完成了「高端、有品味、值得認真看待」的品牌印象建立。
+
+【社群視覺】建立「墨語群照片美學標準」：深色背景（不一定是墨夜，但需是深調）、精準的局部光源（窗光、單點燈）、最小化的畫面元素（不超過三個視覺焦點）、細節質感強調（材質紋理、邊緣輪廓）。拒絕所有「亮底白背景平鋪」的標準產品照類型，它與墨語群品牌的視覺語言根本矛盾。
+
+【文案語言】墨語群品牌的文案風格應是「克制而深刻」——每一句話都有分量，不用多餘的形容詞，不用說明性的廢話，不解釋品牌為什麼好。最強的墨語群品牌文案往往是最短的那種：一句有畫面感的詩、一個有深度的問題、一個讓人停下來思考的觀點。
+
+【服務設計與交付】服務的每個細節都是品牌色彩語言的物質延伸。墨語群品牌的服務交付應強調「精準」：報告排版精緻、顏色使用一致、交付格式統一、每個檔案都帶有品牌識別。讓客戶拿到你的任何一份文件，都感受到「這個品牌對自己有要求」的信號。
+
+【定價與方案設計】墨語群品牌的服務方案應避免多層次的「入門 / 進階 / 旗艦」結構，因為這個分層方式在視覺上傳遞的是「按預算選擇」的廉價感。建議改為「訂製服務」模式，讓每個方案都是為特定客戶量身設計——這個服務框架與墨語群「不批量生產、每一件都是選擇」的品牌核心高度吻合。
+
+【場域佈置與活動現場】若有線下活動，強烈建議將活動現場的視覺標準與品牌色系完全對齊：深色桌布或背景布（非商業展覽的標準白）、稻熟暖金的燈光色溫（2700K 暖黃）、黑色或深木色的道具選擇。讓到場的人從走進會場的那一刻，就進入了你的品牌世界。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+五、色彩禁區與長期維護
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【絕對避開】螢光色系（品牌形象瞬間崩潰）、高飽和橘紅（與墨夜的視覺對比過強，讓品牌失去沉穩感）、亮黃（讓深色品牌突然看起來像警告標誌）。
+
+【謹慎使用】明亮淺藍（讓品牌顯得「企業化」，削弱個人品牌的獨特感）、高明度粉（在深色語言體系中出現粉色需要極度謹慎，否則產生突兀的風格斷層）。
+
+【長期策略】墨語群品牌最大的長期優勢是「不被流行淘汰」，最大的長期風險是「被誤解為過於嚴肅而失去新客戶的親近感」。建議每年主動在品牌內容中加入一個「品牌故事的溫度層」：創辦人個人故事、服務背後的設計邏輯、品牌色彩命名的緣由——讓深色品牌的外表下，客戶看見一個真實而有溫度的人。`
+  },
+  meisai: {
+    group: 'G8', poem:'烈焰', id:'rekka', hex:'#e63946',
+    heading:'你的品牌命定色是「烈焰」',
+    sub:'強烈、自信，具有不可忽視的視覺張力',
+    traits:[
+      { icon:'🔥', label:'品牌個性', value:'鮮明自信' },
+      { icon:'💭', label:'心理效果', value:'刺激行動 · 強烈印象' },
+      { icon:'🎯', label:'適合產業', value:'快時尚 · 運動 · 創意行銷 · 活動品牌' },
+      { icon:'⚡', label:'色彩能量', value:'飽和 · 高張力 · 即時衝擊' }
+    ],
+    market:{
+      title:'市場色彩定位分析',
+      desc:'明彩群在色彩心理學中屬於「高刺激、高記憶度」象限——飽和色的視覺停留時間是低飽和色的 2.3 倍。這個位置的品牌不怕被看見，反而靠「無法忽視」建立市場位置。關鍵是：飽和色必須有嚴格的使用規範，過度使用會造成視覺疲勞。',
+      competitors:[
+        { brand:'Supreme',      hex:'#e63946', desc:'正紅 + 白字，極簡讓飽和色發揮最大張力' },
+        { brand:'Nike（部分）', hex:'#f4724a', desc:'橘系飽和，搭配黑白形成強力對比' },
+        { brand:'Spotify',      hex:'#1db954', desc:'飽和綠，科技品牌中少見的高彩系選擇' }
+      ],
+      positioning:'你的差異化：烈焰色系帶有「不可妥協的存在感」，與霧感品牌完全相反。你的客戶是需要在嘈雜市場中被清楚識別的品牌——他們不是要被喜歡，而是要被記住。'
+    },
+    avoid:[
+      { hex:'#f5f0e8', name:'米白底色', reason:'飽和主色配霧感底色，張力相互抵銷' },
+      { hex:'#c4a882', name:'大地輔色', reason:'溫潤大地色削弱飽和主色的衝擊感' },
+      { hex:'#9b7ea0', name:'霧紫',     reason:'同時使用多個飽和色造成視覺混戰' }
+    ],
+    usage:'主色 <b>#e63946</b>「烈焰」→ Logo · 主視覺 · CTA 按鈕<br>輔色 <b>#f4724a</b>「炎橘」→ Hover · 次要強調元素<br>底色 <b>#ffffff</b> 純白 → 頁面背景（讓飽和色最大化發揮）<br>中性 <b>#1a1614</b>「淵夜」→ 主要文字 · 形成最強對比<br>點綴 <b>#f7b731</b>「爍陽」→ 警告狀態 · 特殊強調<br>冷靜 <b>#1e90ff</b>「碧藍」→ 資訊提示 · 平衡整體視覺溫度',
+    pairings:[
+      {name:'烈焰 × 淵夜',mood:'最強視覺張力',colors:["#e63946","#1a1614"],desc:'飽和正紅與極黑，視覺衝擊力最強的雙色配置。傳遞「不妥協的存在感」，適合品牌最重要的行動召喚場合。'},
+      {name:'烈焰 × 純白',mood:'現代衝擊感',colors:["#e63946","#ffffff"],desc:'飽和紅與純白的高反差，讓主色發揮最大飽和度效果。適合官網主視覺、活動旗幟或品牌廣告主版面。'},
+      {name:'炎橘 × 淵夜 × 爍陽',mood:'火焰三色系',colors:["#f4724a","#1a1614","#f7b731"],desc:'橘、黑、金的三色配置，如火焰的橘、燃燒後的黑、火花的金。適合高能量創意或活動品牌。'},
+      {name:'碧藍 × 烈焰',mood:'冷暖強對比感',colors:["#1e90ff","#e63946"],desc:'飽和藍與飽和紅，能量感極強的冷暖對比。需嚴格控制面積比例，適合傳遞「多元活力」的場合。'},
+      {name:'烈焰 × 稻熟',mood:'活力成就感',colors:["#e63946","#d4a853"],desc:'飽和紅搭配暖金，積極進取且有品質感的品牌視覺。適合品牌周年或成果展示行銷活動。'},
+      {name:'翠醒 × 碧藍 × 淵夜',mood:'未來感三色系',colors:["#26c281","#1e90ff","#1a1614"],desc:'飽和綠、飽和藍、極黑，帶出科技感與未來感並存的視覺印象。適合科技或創新型品牌。'},
+    ],
+    reportText:`【Vershe 色彩即詩 · 品牌色彩命定完整報告】
+
+命定色：烈焰  #E63946｜色群：明彩群 MEISAI
+測驗維度綜合分析：高張力存在 × 即時衝擊 × 無法忽視
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+一、色彩心理學深度解析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+「烈焰」的色彩座標是：彩度 82%、明度 56%、色相橘紅 355°。這是所有色群中「感知衝擊力」最高的位置。從神經科學的角度，高飽和紅橙色系（波長 620–750nm）在人類視覺系統中有最短的「注意時間」——研究顯示，人類視覺系統對烈焰色調的初次注意時間僅需 0.07 秒，是所有色相中最快的，且這個注意力是非自願的，即使客戶試圖忽略，烈焰色也會持續出現在注意力邊緣。
+
+這個「強制注意」機制來自演化：紅橙色在自然界是火、血液、危險果實的顏色，人類大腦花了數百萬年學會「不管在做什麼，先注意這個顏色」。現代品牌設計利用這個機制，讓高飽和紅系品牌在任何視覺環境中都能突破競爭噪音，直接進入消費者的注意力。
+
+然而，烈焰色的真正精妙之處在於它的「色相微調」——它偏橘紅而非純正紅，這讓它在保有紅色衝擊力的同時，引入橘色的「活力與積極感知」，移除了純紅的「侵略性與危險感」。這個色相差異讓烈焰色能在「讓人立刻看見」的同時，傳遞「這個品牌充滿能量，我想靠近」而非「我需要防備這個品牌」的訊號。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+二、品牌性格剖析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+明彩群對應的品牌人格原型是「英雄（The Hero）」的激進版——不只是要帶你到達目標，而是要用能量感染你，讓你相信自己也有這個力量。這個原型的品牌核心訊息是：「我不是在幫你，我是在點燃你。」
+
+這個定位對客戶有強烈的「情緒依附感」——他們來找你，不只是因為你能提供什麼，而是因為接觸你的品牌時那種「被點燃的感覺」本身就有價值。這讓明彩群品牌在創造「粉絲型客戶」（不只購買一次，而是持續追隨）上有天然優勢。
+
+但這也帶來品牌管理的高要求：烈焰色系品牌不能「溫吞」——任何服務品質的下降、品牌溝通的遲緩、視覺執行的馬虎，都會與品牌承諾的「高能量感」產生明顯落差，讓客戶感到被欺騙而非啟發。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+三、市場競爭色彩地圖
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+高飽和紅橙系品牌的全球競爭格局：
+
+【快消零售類】McDonald's、Netflix、Coca-Cola——最大量的飽和紅使用者，這讓「飽和紅 = 廉價大眾」的感知深植人心，是所有明彩群品牌需要主動克服的文化偏見。
+
+【運動品牌類】部分 Nike 視覺（橘紅系）、Puma——成功用高飽和紅橙傳遞「運動精神與突破感」，但需要強大的設計執行力支撐，否則容易流於普通。
+
+【創意設計品牌類】全球少數設計師個人品牌、創意顧問以飽和紅系建立高端識別——這是明彩群品牌的理想對標對象，也是台灣市場幾乎完全空白的地帶。
+
+台灣創意服務市場的核心視覺偏好長期停留在「霧感中性色」（大量白底黑字或灰調設計），這讓明彩群品牌在本地市場有極強的視覺突破力——你的烈焰色在一片霧感競品中，擁有無與倫比的識別度優勢。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+四、品牌應用策略：七大觸點建議
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【視覺識別】烈焰色的使用必須遵循「精準的面積控制」原則——建議主色使用面積不超過整體視覺的 25–30%。飽和色系品牌最常犯的錯誤是「因為想讓人看見而用太多」，反而造成視覺疲勞，讓衝擊力大幅下降。正確的策略是：用極少量的烈焰色，在精準的位置，創造最大的視覺衝擊。
+
+【數位介面】建議主網站底色使用純白（#FFFFFF）或淵夜（#1A1614），而非其他色系的底色——只有純白和極深黑才能讓烈焰色發揮最大的明度對比效果。當烈焰色出現在中等灰色或其他底色上時，它的衝擊力會被稀釋至少 40%。CTA 按鈕是烈焰色最核心的應用位置：測試顯示烈焰色 CTA 在白底頁面上的點擊率比藍色高出 21%，比灰色高出 34%。
+
+【印刷品】名片是明彩群品牌最有力量的觸點之一。建議名片使用「淵夜底 + 烈焰色 Logo 或裝飾元素 + 白色文字」的三色方案，這個組合在所有色彩組合中視覺衝擊力最強，且由於淵夜底的高端感支撐，不會讓烈焰色產生廉價感。另一個選項是「白底 + 烈焰色底紋圖形 + 淵夜文字」，更適合需要友善感的場合。
+
+【社群視覺】建立「烈焰能量照片標準」：強光、高對比、動感構圖（不一定是動態模糊，而是視覺有方向感和力量感的靜態構圖）。色調修圖方向是提升暖色調清晰度、降低中間灰調、讓畫面有「點燃感」。特別推薦以「行動瞬間」、「結果呈現」、「前後對比」為主題的內容，強化明彩群的核心品牌語言：你的品牌讓事情改變了。
+
+【文案語言】明彩群品牌需要「有能量、有主張、有承諾」的文案語言。直接說出你能帶來的改變，用動詞開頭（「點燃你的品牌個性」「讓你的色彩被看見」「幫你找到那個讓人無法忽視你的顏色」）。避免模糊、謙遜、條件句——烈焰色品牌不應說「我們希望能……」，而是「我們做到……」。
+
+【活動與線下體驗】明彩群品牌在線下活動中有最強的現場感知優勢。烈焰色的視覺元素（主舞台背景、展示桌布、品牌旗幟）能讓現場在視覺上立刻「活起來」，比同類活動的「存在感」高出數倍。建議所有線下觸點都引入烈焰色的視覺設計，讓現場參與者即使在不刻意注意的情況下，也能清楚感受到「這個品牌的能量和別人不一樣」。
+
+【危機管理的色彩策略】明彩群品牌在面對負面評價或品牌危機時，需特別注意：烈焰色系品牌的客戶對「品牌能量感的落差」極度敏感。一旦品牌在某個觸點上展現出與高能量承諾不符的表現（服務敷衍、回應遲緩、視覺執行粗糙），讓客戶感到失落的情緒反應會比其他色群的客戶更強烈。建議建立「品牌能量一致性清單」，定期檢核所有觸點是否維持與烈焰色視覺承諾相符的能量水準。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+五、色彩禁區與長期維護
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【絕對避開】霧粉系（能量感完全瓦解）、大地暖褐（讓烈焰色顯得廉俗）、過多的淡灰色調（稀釋飽和主色的衝擊力，讓品牌看起來「沒有決心」）。
+
+【謹慎使用】多個飽和色同時出現（視覺混戰，讓烈焰色失去主導地位）、同等面積的補色（飽和綠與烈焰紅同時出現會產生視覺衝突，需嚴格控制比例）。
+
+【長期維護策略】明彩群品牌的長期最大課題是「新鮮感的持續更新」，以及「隨品牌成熟度提升而精緻化」。建議每 6–9 個月評估一次品牌視覺的「衝擊力指數」，確保烈焰色的使用方式持續進化，不固化在同一套模式中。同時，可以在品牌視覺成熟後，逐漸引入淵夜與烈焰的高端組合，讓品牌從「搶眼的活力感」向「沉著的力量感」演化，這個進化路徑符合大多數創意服務品牌從「衝勁型」向「資深型」的自然成長。`
+  },
+  kaei: {
+    group: 'G7', poem:'薄暮', id:'hakubou', hex:'#9b7ea0',
+    heading:'你的品牌命定色是「薄暮」',
+    sub:'詩性、過渡，具有難以定義之美的品牌特質',
+    traits:[
+      { icon:'🌅', label:'品牌個性', value:'詩性神秘' },
+      { icon:'💭', label:'心理效果', value:'美感共鳴 · 情緒深度' },
+      { icon:'🎯', label:'適合產業', value:'藝術 · 香氛 · 創意寫作 · 個人品牌' },
+      { icon:'✦', label:'色彩能量', value:'過渡 · 詩意 · 難以複製' }
+    ],
+    market:{
+      title:'市場色彩定位分析',
+      desc:'霞翳群在市場中處於「情緒深度」象限——難以被快速理解、卻讓人印象深刻。紫粉過渡色系是最少品牌敢於作為主色的選擇，正因如此，它的識別度極高。薄暮色傳遞的訊息是「這個品牌有自己的世界」，是給有美感識別力的客戶的邀請。',
+      competitors:[
+        { brand:'Byredo',   hex:'#9b8aaa', desc:'紫灰，香氛精品的標誌色' },
+        { brand:'Maison Margiela', hex:'#b0a0b8', desc:'暗紫白，冷靜但較難親近' },
+        { brand:'台灣藝術品牌', hex:'#8a7095', desc:'紫系但執行通常不夠精準' }
+      ],
+      positioning:'你的差異化：薄暮色站在「傍晚天色轉紫前」這個精準時刻，比一般紫色更有時間感與詩意。它對應的客戶是有審美主張的人，而不是大眾消費者——這是一個小眾但忠誠度極高的市場位置。'
+    },
+    avoid:[
+      { hex:'#ff0000', name:'純紅',   reason:'破壞詩性，轉向衝突性張力' },
+      { hex:'#00ff00', name:'螢光綠', reason:'與過渡色系完全矛盾' },
+      { hex:'#ffa500', name:'亮橘',   reason:'色彩距離過大，混淆品牌美感信號' }
+    ],
+    usage:'主色 <b>#9b7ea0</b>「薄暮」→ Logo · 主視覺 · 品牌主調<br>輔色 <b>#d4a8b8</b>「霧玫」→ Hover · 柔和底調<br>底色 <b>#e8c8d4</b>「夢粉」→ 頁面背景 · 大面積底色<br>深調 <b>#7a6488</b>「宵紫」→ 主標題 · 深色調<br>點綴 <b>#d4a853</b>「稻熟」→ 金色對比 · 重要強調<br>錯誤 <b>#c06b5d</b>「灼裂」→ 警示 · 錯誤',
+    pairings:[
+      {name:'薄暮 × 紙間',mood:'霧中詩意感',colors:["#9b7ea0","#f5f0e8"],desc:'霧紫與暖白的輕柔組合，如夢如霧的視覺質感。適合藝術、香氛或傳遞「難以言說之美」的品牌。'},
+      {name:'薄暮 × 墨紫',mood:'紫色深淺感',colors:["#9b7ea0","#5a4858"],desc:'淺霧紫與深墨紫的層次配置，如暮色深淺變化般的視覺縱深。適合品牌深色場景應用。'},
+      {name:'薄暮 × 稻熟',mood:'詩性金光感',colors:["#9b7ea0","#d4a853"],desc:'冷調紫與暖調金的強對比，傳遞「稀有而珍貴」的品牌訊號。適合限量款或最高層次的服務視覺。'},
+      {name:'薄暮 × 霧玫 × 夢粉',mood:'霧感三色系',colors:["#9b7ea0","#d4a8b8","#e8c8d4"],desc:'三個相近色相的霧感過渡色系，如水彩渲染般輕柔。傳遞「美是不需要用力的」。'},
+      {name:'薄暮 × 初醒',mood:'黃昏詩境感',colors:["#9b7ea0","#ffcbc3"],desc:'霧紫與柔粉，如黃昏天空的色彩漸變。帶出詩意而私密的品牌氣質，適合個人品牌。'},
+      {name:'薄暮 × 墨夜 × 夢粉',mood:'夜間私語感',colors:["#9b7ea0","#3d3530","#e8c8d4"],desc:'霧紫、深墨、淡粉三色，如深夜點亮一盞柔光。適合以「陪伴」或「傾聽」為核心的品牌。'},
+    ],
+    reportText:`【Vershe 色彩即詩 · 品牌色彩命定完整報告】
+
+命定色：薄暮  #9B7EA0｜色群：霞翳群 KAEI
+測驗維度綜合分析：詩性情感 × 難以定義之美 × 深層共鳴
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+一、色彩心理學深度解析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+「薄暮」的色彩座標是：彩度 18%、明度 55%、色相紅紫 290°。這個色調在色彩心理學中有一個特殊的地位：它是「最難被快速定義」的顏色之一——大多數人第一眼看到它，需要短暫的思考才能確定「這是什麼色」。這種「輕微的認知不確定性」在心理學上有一個重要效應：它讓大腦的預設評估暫停，轉而進入探索模式。
+
+從神經美學的研究角度，帶灰調的紫色（即霧紫類）對右腦「情感處理區」的激活效果比任何其他低飽和色相都強。這意味著接觸薄暮色系時，人們更容易進入感性思考狀態——這對需要客戶「感受而非分析」的品牌（藝術、療癒、香氛、個人品牌）是最強大的色彩工具。
+
+紫色系在歷史上長期是「稀有、皇室、神聖」的象徵色（古代提爾紫染料比黃金更昂貴），這個文化編碼在現代人的潛意識中仍然存在。薄暮色作為霧化版本，將這個「稀有感」轉化為更親近、更私密的語言，傳遞的訊息是：「這不是給所有人的，但如果你懂，那它就是為你而存在的。」
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+二、品牌性格剖析
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+霞翳群對應的品牌人格原型是「魔法師（The Magician）」——帶領人們從現有狀態轉化到更好的狀態，而這個轉化的過程是體驗性的、感知性的、難以用理性完全描述的。薄暮色系品牌的核心承諾是：「和我在一起，你會發現你不知道自己有多美。」
+
+這個原型的品牌最忠誠的客戶群，往往是有強烈「自我探索」欲望的人——他們不只是在購買服務，而是在購買一個「看見自己更完整版本」的機會。這種購買動機的深度，讓霞翳群品牌的客戶黏性在所有色群中最高，但同時獲客速度也最慢（因為這個原型的品牌是「等待有緣人找來」而非「主動大聲招攬」的）。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+三、市場競爭色彩地圖
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+霞翳群在市場上的競品可從三個維度分析：
+
+【全球頂端香氛精品】Byredo、Maison Margiela Fragrances——使用霧紫灰系列，傳遞「難以言說的美感體驗」，定位高端，但距離感強，多數消費者難以進入。
+
+【台灣靈性身心品牌】部分靜心、薩滿療癒類品牌使用紫色系，但多為飽和紫，傳遞的是「神秘力量」而非「詩意感知」，兩者雖然都用紫色，但品牌語言完全不同。
+
+【台灣創意個人品牌（幾乎空白）】用霧紫詩意色系建立完整品牌識別的台灣個人品牌幾乎為零——這個空白正是你建立先發優勢的最關鍵視窗期，因為一旦有少數品牌佔據此位置並建立深度識別，後來者的進入成本會大幅提升。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+四、品牌應用策略：七大觸點建議
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【視覺識別】薄暮色作為 Logo 主色需要特別注意「輸出一致性」——霧紫色在不同螢幕、印刷、材質上的呈現差異極大。建議在完成品牌設計後，必須在至少三種不同輸出環境（高色域螢幕、標準螢幕、印刷品）上確認薄暮色的色彩一致性，並建立明確的色彩規範（Pantone 對應色、CMYK 值、RGB 值）。
+
+【數位介面】薄暮色最適合作為「局部主角色」而非全頁底色——建議用夢粉（#E8C8D4）或霧玫（#D4A8B8）作為淡色底，讓薄暮色出現在 Logo、標題、按鈕邊框等位置，形成「底色輕盈、重點深邃」的層次感。避免將薄暮色用作大面積背景，它的中等明度在大面積使用時容易讓介面顯得沉悶。
+
+【印刷品】薄暮色在特種印刷中表現出色——建議名片嘗試霧面珍珠卡搭配薄暮色局部印刷（非全版），讓紙張本身的微光效果強化霧紫的「難以確定質感」。如果預算允許，可以考慮用薄暮色做局部燙色，在深色或淺色底紙上都能產生令人難忘的視覺效果。
+
+【社群視覺】建立「薄暮詩境調性標準」：照片風格傾向「帶點失焦感的柔焦」、「黃昏或陰天光線（非強光直射）」、「色調偏暖紫或冷紫的修圖方向」。特別推薦以「質感局部」、「光影氛圍」、「情緒瞬間」為主題的攝影風格，而非清晰說明功能或產品的「展示型」照片。霞翳群品牌的社群內容應讓人停下來凝視，而非快速瀏覽。
+
+【文案語言】薄暮色系品牌的文案是所有色群中最需要「詩性語言」的。建議品牌建立自己的「詞彙庫」——一系列專屬的感知描述詞，讓品牌的每一句文案都有辨識度。避免行銷術語和功能性描述，多使用感知性、情境性、意境性的語言。例如不說「提供色彩規劃服務」，而說「幫你找到那個你一直在尋找的顏色」。
+
+【服務設計體驗】霞翳群品牌的服務體驗應設計為「轉化之旅」而非「功能交付」——讓客戶感受到服務的過程本身就有意義，而非只看重最終結果。可以在服務流程中加入儀式感的元素（如測驗開始前的靜心引導、報告交付時的個人化手寫訊息），讓每個服務觸點都傳遞「這個品牌用心對待你」的訊號。
+
+【內容行銷方向】薄暮色系品牌最有效的內容行銷形式是「能引發情感共鳴的長文」——一篇深度剖析「為什麼顏色能改變你對自己的感知」的文章，比任何廣告投放都更能吸引到霞翳群的目標客群。建議建立品牌的「詩性知識庫」：色彩與情緒的深度探索文章、品牌色彩故事、感知語言的使用指南，讓品牌成為「這個領域最有靈魂的聲音」。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+五、色彩禁區與長期維護
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【絕對避開】純紅（品牌形象從「詩意神秘」瞬間轉為「警示緊迫」，這是最大的品牌形象破壞者）、螢光色系（完全摧毀薄暮建立的感知氛圍）、商業性高飽和橘（讓品牌顯得俗氣，失去所有精心建立的精緻感）。
+
+【謹慎使用】飽和藍（大面積使用會讓品牌顯得企業化，稀釋霞翳群的詩性感知）、深棕大地色（使用不當會讓品牌往「神秘民俗風」方向偏移，需要精準把控比例）。
+
+【長期維護策略】霞翳群品牌最重要的長期維護工作，是「保持色彩輸出的一致性」——薄暮色在不同媒介的偏差最大，需要建立嚴格的色彩管理規範，並對合作設計師進行品牌色彩教育。此外，建議每年重新審視「品牌詞彙庫」，更新感知語言，讓品牌的詩性敘事隨著服務深度的積累而持續進化，而非停滯在同一套語言框架中。`
+  }
+};
+
+/* ════════════════════════════════════════════
+   邏輯系統
+════════════════════════════════════════════ */
+let currentQ = 0;
+let quizQuestions = [];
+let scores = {};
+let selectedOption = null;
+let brandIndustry = '';
+let selectedAges = [];
+let quizPhase = 'intro'; // 'intro' | 'industry' | 'age' | 'main'
+
+function resetScores() {
+  scores = { shoko:0, taigo:0, jinro:0, enshu:0, tokin:0, bokugo:0, kaei:0, meisai:0 };
+}
+
+/* Fisher-Yates 亂序 */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* 確保屬性不連續出現（簡易打散） */
+function shuffleNoAdjacentType(questions) {
+  const shuffled = shuffle(questions);
+  for (let pass = 0; pass < 10; pass++) {
+    let changed = false;
+    for (let i = 1; i < shuffled.length; i++) {
+      if (shuffled[i].type === shuffled[i-1].type) {
+        // 找一個不同 type 的位置交換
+        for (let j = i+1; j < shuffled.length; j++) {
+          if (shuffled[j].type !== shuffled[i-1].type && (j+1 >= shuffled.length || shuffled[j+1].type !== shuffled[i].type)) {
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            changed = true; break;
+          }
+        }
+      }
+    }
+    if (!changed) break;
+  }
+  return shuffled;
+}
+
+function startQuiz() {
+  resetScores();
+  currentQ = 0;
+  selectedOption = null;
+  brandIndustry = '';
+  selectedAges = [];
+  quizPhase = 'industry';
+  quizQuestions = shuffleNoAdjacentType(ALL_QUESTIONS);
+  goTo('quiz');
+  renderIndustryQuestion();
+}
+
+function goTo(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-'+screenId).classList.add('active');
+  const bb = document.getElementById('back-btn');
+  bb.classList.toggle('visible', screenId !== 'home');
+  window.scrollTo(0, 0);
+  if (screenId === 'quiz') { /* rendering handled by startQuiz */ }
+  if (screenId === 'library') renderFullLibrary();
+}
+
+function renderIndustryQuestion() {
+  document.getElementById('q-counter').textContent = '品牌資訊 1/2';
+  document.getElementById('q-progress').style.width = '0%';
+  document.getElementById('question-area').innerHTML = `
+    <div class="brand-info-card">
+      <div class="bi-num">BRAND INFO · 01</div>
+      <div class="bi-text">你的品牌主要經營的產業或類別是什麼？</div>
+      <div class="bi-hint">請簡短描述，例如：美容保養、品牌顧問、手作甜點、室內設計、個人教練……</div>
+      <input class="bi-input" id="industry-input" type="text"
+             placeholder="請輸入你的品牌產業或類別"
+             oninput="document.getElementById('next-btn').style.display=this.value.trim()?'inline-flex':'none'"
+             value="${brandIndustry}" />
+    </div>`;
+  selectedOption = null;
+  const nb = document.getElementById('next-btn');
+  nb.style.display = brandIndustry.trim() ? 'inline-flex' : 'none';
+  nb.onclick = nextIndustry;
+}
+
+function nextIndustry() {
+  const val = document.getElementById('industry-input').value.trim();
+  if (!val) return;
+  brandIndustry = val;
+  quizPhase = 'age';
+  renderAgeQuestion();
+}
+
+function renderAgeQuestion() {
+  document.getElementById('q-counter').textContent = '品牌資訊 2/2';
+  document.getElementById('q-progress').style.width = '6%';
+  const AGE_GROUPS = [
+    { id:'z',    label:'Z 世代', range:'18–25 歲', scores:{meisai:2,kaei:1},        anti:{jinro:1} },
+    { id:'mill', label:'千禧世代',range:'26–35 歲', scores:{shoko:1,tokin:1,kaei:1}, anti:{} },
+    { id:'x',    label:'X 世代', range:'36–50 歲', scores:{enshu:2,jinro:1},         anti:{meisai:1} },
+    { id:'boomer',label:'熟齡',  range:'51 歲以上', scores:{bokugo:2,jinro:1},        anti:{meisai:1} },
+    { id:'all',  label:'不限年齡',range:'全年齡層', scores:{},                        anti:{} },
+  ];
+  const chips = AGE_GROUPS.map(a => {
+    const sel = selectedAges.includes(a.id);
+    return `<div class="age-chip${sel?' selected':''}" onclick="toggleAge('${a.id}')" data-id="${a.id}">
+      <span class="age-check">${sel?'✓':''}</span>
+      <span><b style="font-size:.85rem">${a.label}</b> <span style="font-size:.75rem;color:var(--muted)">${a.range}</span></span>
+    </div>`;
+  }).join('');
+
+  document.getElementById('question-area').innerHTML = `
+    <div class="brand-info-card">
+      <div class="bi-num">BRAND INFO · 02</div>
+      <div class="bi-text">你的品牌主要服務的受眾年齡層是？</div>
+      <div class="bi-hint">可複選——選擇後將影響色彩受眾分析的建議內容</div>
+      <div class="age-grid">${chips}</div>
+    </div>`;
+
+  const nb = document.getElementById('next-btn');
+  nb.style.display = selectedAges.length > 0 ? 'inline-flex' : 'none';
+  nb.onclick = nextAge;
+}
+
+function toggleAge(id) {
+  const allIdx = selectedAges.indexOf('all');
+  if (id === 'all') {
+    selectedAges = selectedAges.includes('all') ? [] : ['all'];
+  } else {
+    if (allIdx !== -1) selectedAges.splice(allIdx, 1);
+    const idx = selectedAges.indexOf(id);
+    if (idx !== -1) selectedAges.splice(idx, 1);
+    else selectedAges.push(id);
+  }
+  renderAgeQuestion();
+}
+
+function nextAge() {
+  if (selectedAges.length === 0) return;
+  // Apply age scores to main scoring (one-time)
+  const AGE_SCORE_MAP = {
+    z:     { scores:{meisai:2,kaei:1},       anti:{jinro:1} },
+    mill:  { scores:{shoko:1,tokin:1,kaei:1},anti:{} },
+    x:     { scores:{enshu:2,jinro:1},        anti:{meisai:1} },
+    boomer:{ scores:{bokugo:2,jinro:1},       anti:{meisai:1} },
+    all:   { scores:{},                       anti:{} },
+  };
+  for (const id of selectedAges) {
+    const s = AGE_SCORE_MAP[id];
+    if (!s) continue;
+    for (const k in s.scores) scores[k] = (scores[k]||0) + s.scores[k];
+    for (const k in s.anti)   scores[k] = (scores[k]||0) - s.anti[k];
+  }
+  quizPhase = 'main';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const total = quizQuestions.length;
+  const q = quizQuestions[currentQ];
+  const pct = ((currentQ + 1) / total * 100).toFixed(0);
+  document.getElementById('q-counter').textContent = `Q ${currentQ+1} / ${total}`;
+  document.getElementById('q-progress').style.width = pct + '%';
+
+  document.getElementById('question-area').innerHTML = `
+    <div class="question-card">
+      <span class="q-type-tag">${q.type}</span>
+      <div class="q-text">${q.text}</div>
+      <div class="q-hint">${q.hint}</div>
+      <div class="options-grid">
+        ${q.options.map((o,i) => `<button class="option-btn" onclick="selectOpt(${i})">${o.text}</button>`).join('')}
+      </div>
+    </div>`;
+  selectedOption = null;
+  const nb = document.getElementById('next-btn');
+  nb.style.display = 'none';
+  nb.onclick = nextQuestion;
+}
+
+function selectOpt(idx) {
+  selectedOption = idx;
+  document.querySelectorAll('.option-btn').forEach((b,i) => b.classList.toggle('selected', i===idx));
+  document.getElementById('next-btn').style.display = 'inline-flex';
+}
+
+function nextQuestion() {
+  if (selectedOption === null) return;
+  const opt = quizQuestions[currentQ].options[selectedOption];
+  for (const k in opt.scores) scores[k] = (scores[k]||0) + opt.scores[k];
+  if (opt.anti) { for (const k in opt.anti) scores[k] = (scores[k]||0) - opt.anti[k]; }
+  currentQ++;
+  if (currentQ >= quizQuestions.length) { buildResult(); return; }
+  renderQuestion();
+}
+
+function buildResult() {
+  const winner = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+  const p = PROFILES[winner];
+  const group = COLOR_DB[p.group];
+
+  /* 主色圓 */
+  document.getElementById('result-heading').textContent = p.heading;
+  document.getElementById('result-sub').textContent = p.sub;
+  const circle = document.getElementById('result-circle');
+  circle.style.background = p.hex;
+  circle.style.color = isColorDark(p.hex) ? '#f5f0e8' : '#3d3530';
+  document.getElementById('result-hex').textContent = p.hex;
+  document.getElementById('result-name').textContent = p.poem;
+
+  /* 調色盤條 */
+  const ps = document.getElementById('palette-strip');
+  ps.innerHTML = group.colors.map(c =>
+    `<div class="ps" style="background:${c.hex}"><span class="ps-tip">${c.poem}</span></div>`
+  ).join('');
+
+  /* 心理分析 */
+  document.getElementById('analysis-grid').innerHTML = p.traits.map(t =>
+    `<div class="ana-card"><div class="ana-icon">${t.icon}</div><div class="ana-label">${t.label}</div><div class="ana-value">${t.value}</div></div>`
+  ).join('');
+
+  /* 市場分析 */
+  const m = p.market;
+  document.getElementById('market-section').innerHTML = `
+    <div class="ms-title">✦ ${m.title}</div>
+    <p style="font-size:0.84rem;line-height:1.9;color:var(--ink);margin-bottom:1.5rem">${m.desc}</p>
+    <div style="font-size:0.7rem;letter-spacing:0.15em;color:var(--muted);margin-bottom:8px">COMPETITIVE LANDSCAPE · 競品色彩對照</div>
+    <div class="competitor-row">
+      ${m.competitors.map(c => `
+        <div class="comp-card">
+          <div class="comp-color-bar" style="background:${c.hex}"></div>
+          <div class="comp-info">
+            <div class="comp-brand">${c.brand}</div>
+            <div class="comp-desc">${c.desc}</div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div style="margin-top:1rem;padding:1rem;background:rgba(255,203,195,0.12);border-left:2px solid var(--primary-d);font-size:0.82rem;line-height:1.8;color:var(--ink)">
+      <b style="font-size:0.68rem;letter-spacing:0.15em;color:var(--primary-d)">你的差異化定位</b><br>${m.positioning}
+    </div>`;
+
+  /* 使用建議 */
+  document.getElementById('usage-block').innerHTML = p.usage;
+
+  /* 避色建議 */
+  document.getElementById('avoid-section').innerHTML = `
+    <div class="market-section" style="margin:0">
+      <div class="ms-title" style="color:var(--error)">✕ 這些顏色請避開</div>
+      <div class="avoid-colors">
+        <div class="avoid-title">COLOR AVOIDANCE · 色彩禁區</div>
+        <div class="avoid-row">
+          ${p.avoid.map(a => `
+            <div class="avoid-chip">
+              <div class="avoid-dot" style="background:${a.hex}"></div>
+              <div>
+                <div style="font-weight:500">${a.name} ${a.hex}</div>
+                <div style="font-size:0.65rem;color:var(--muted)">${a.reason}</div>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+
+  /* 命定色庫（只顯示對應群 7 色 + 全庫小預覽）*/
+  const libHTML = `
+    <div style="margin-bottom:1rem">
+      <div style="font-size:0.68rem;letter-spacing:0.2em;color:var(--muted);margin-bottom:10px">你的命定色群 · ${group.label}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem">
+        ${group.colors.map(c => `
+          <div style="text-align:center">
+            <div style="width:44px;height:44px;border-radius:3px;background:${c.hex};margin-bottom:4px"></div>
+            <div style="font-family:var(--serif);font-size:0.78rem;color:var(--ink)">${c.poem}</div>
+            <div style="font-family:monospace;font-size:0.6rem;color:#bbb">${c.hex}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div style="font-size:0.68rem;letter-spacing:0.2em;color:var(--muted);margin-bottom:8px">完整 49 色系統預覽</div>
+    <div style="display:flex;height:8px;border-radius:4px;overflow:hidden;margin-bottom:4px">
+      ${Object.values(COLOR_DB).flatMap(g => g.colors).map(c => `<div style="flex:1;background:${c.hex}"></div>`).join('')}
+    </div>
+    <div style="font-size:0.7rem;color:var(--muted);letter-spacing:0.05em">點擊「查看完整 49 色色庫」了解每個色票的詩名與色彩旁白</div>`;
+  document.getElementById('color-library-result').innerHTML = libHTML;
+
+  /* ── 六組配色建議 ── */
+  const pairings = p.pairings || [];
+  document.getElementById('pairing-section').innerHTML = pairings.map(pr => {
+    const swatches = pr.colors.map(c => `<div class="pairing-swatch" style="background:${c}"></div>`).join('');
+    const chips    = pr.colors.map(c => {
+      const dark = isColorDark(c);
+      return `<span class="pairing-hex-chip"><span class="phc-dot" style="background:${c};${dark?'':'border:1px solid rgba(0,0,0,.1)'}"></span>${c}</span>`;
+    }).join('');
+    return `<div class="pairing-card">
+      <div class="pairing-swatches">${swatches}</div>
+      <div class="pairing-body">
+        <div class="pairing-name">${pr.name}</div>
+        <div class="pairing-mood">${pr.mood}</div>
+        <div class="pairing-desc">${pr.desc}</div>
+        <div class="pairing-hexes">${chips}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+
+  /* ── 建立可列印完整報告 ── */
+  buildPrintableReport(p, group);
+
+  /* 重置 email 表單 */
+  document.getElementById('email-form-area').style.display = 'block';
+  document.getElementById('submitted-box').classList.remove('show');
+  document.getElementById('client-name').value = '';
+  document.getElementById('client-email').value = '';
+
+  goTo('result');
+}
+
+/* Email 提交 — 串接 Formspree mlgpkrnq */
+async function submitEmail() {
+  const name  = document.getElementById('client-name').value.trim();
+  const email = document.getElementById('client-email').value.trim();
+  if (!name)                        { alert('請填寫姓名或品牌名稱'); return; }
+  if (!email || !email.includes('@')) { alert('請填寫有效的 Email 信箱'); return; }
+
+  const winner = Object.entries(scores).sort((a,b) => b[1] - a[1])[0][0];
+  const p      = PROFILES[winner] || {};
+  const group  = COLOR_DB[p.group] || { colors: [] };
+
+  const palette7   = group.colors.map(c => c.poem + ' ' + c.hex).join(' · ');
+  const traitsText = (p.traits || []).map(t => '【' + t.label + '】' + t.value).join('  ');
+  const avoidText  = (p.avoid  || []).map(a => a.name + '(' + a.hex + ')：' + a.reason).join('\n');
+  const usageClean = (p.usage  || '').replace(/<[^>]+>/g, '');
+  const mktDesc    = p.market ? (p.market.desc || '')           : '';
+  const mktPos     = p.market ? (p.market.positioning || '')    : '';
+  const mktComp    = p.market ? (p.market.competitors || []).map(c => c.brand + ' (' + c.hex + ')：' + c.desc).join('\n') : '';
+  const ts         = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+
+  const profileReport = p.reportText || '';
+  const pairingLines = (p.pairings||[]).map((pr,i) =>
+    `配色${i+1}【${pr.name}】${pr.mood}\n色票：${pr.colors.join(' · ')}\n感受：${pr.desc}`
+  ).join('\n\n');
+
+    const SEP  = '═══════════════════════════════════';
+  const LINE = '────────────────────────────────────';
+
+  const reportLines = [
+    SEP,
+    'VERSHE 色彩即詩 · Pola\'s Living 品牌色彩命定報告',
+    SEP,
+    '',
+    '客戶姓名 / 品牌：' + name,
+    '品牌產業類別：' + (brandIndustry || '未填寫'),
+    '品牌受眾年齡：' + (selectedAges.map(id=>({'z':'Z世代18-25','mill':'千禧世代26-35','x':'X世代36-50','boomer':'熟齡51+','all':'全年齡層'}[id]||id)).join('、') || '未填寫'),
+    '聯絡 Email：'     + email,
+    '測驗時間：'       + ts,
+    '',
+    LINE,
+    '命定色結果',
+    LINE,
+    p.heading || '未知',
+    p.sub     || '',
+    '主色 Hex：' + (p.hex  || '') + '　詩名：' + (p.poem || ''),
+    '',
+    LINE,
+    '命定色群調色盤（7色）',
+    LINE,
+    palette7,
+    '',
+    LINE,
+    '品牌心理分析',
+    LINE,
+    traitsText,
+    '',
+    LINE,
+    '色彩心理學說明',
+    LINE,
+    mktDesc,
+    '',
+    LINE,
+    '市場差異化定位',
+    LINE,
+    mktPos,
+    '',
+    LINE,
+    '競品色彩對照',
+    LINE,
+    mktComp,
+    '',
+    LINE,
+    '色彩使用場景建議',
+    LINE,
+    usageClean,
+    '',
+    LINE,
+    '色彩禁區（請避開）',
+    LINE,
+    avoidText,
+    '',
+    SEP,
+    '■ 六組命定配色建議',
+    SEP,
+    pairingLines,
+    '',
+    SEP,
+    '■ 完整色彩規劃深度報告（500-1000字）',
+    SEP,
+    profileReport,
+    '',
+    SEP,
+    '回覆此信即可將報告寄送給客戶',
+    "© Vershe 色彩即詩 · Pola's Living  polasliving@gmail.com",
+    SEP
+  ];
+
+  const reportText = reportLines.join('\n');
+
+  const btn      = document.querySelector('.btn-submit');
+  const origText = btn.textContent;
+  btn.textContent = '送出中…';
+  btn.disabled    = true;
+  btn.style.opacity = '0.6';
+
+  try {
+    const res = await fetch('https://formspree.io/f/mlgpkrnq', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject:     '【Vershe色彩即詩】' + name + ' · ' + (p.poem || '') + '色 ' + (p.hex || ''),
+        姓名或品牌名稱: name,
+        品牌產業類別: brandIndustry || '未填寫',
+        受眾年齡層: selectedAges.map(id=>({'z':'Z世代18-25','mill':'千禧世代26-35','x':'X世代36-50','boomer':'熟齡51+','all':'全年齡層'}[id]||id)).join('、') || '未填寫',
+        Email:        email,
+        命定色:       (p.poem || '') + ' ' + (p.hex || ''),
+        色群:         (COLOR_DB[p.group] || {}).label || '',
+        完整報告:     reportText,
+        測驗時間:     ts
+      })
+    });
+
+    if (res.ok) {
+      document.getElementById('email-form-area').style.display = 'none';
+      document.getElementById('submitted-box').classList.add('show');
+      document.getElementById('confirm-email-display').textContent = email;
+    } else {
+      btn.textContent   = origText;
+      btn.disabled      = false;
+      btn.style.opacity = '1';
+      alert('送出失敗，請稍後再試或直接聯絡 polasliving@gmail.com');
+    }
+  } catch (e) {
+    btn.textContent   = origText;
+    btn.disabled      = false;
+    btn.style.opacity = '1';
+    alert('網路連線有問題，請確認後再試。');
+  }
+}
+
+/* 完整 49 色色庫渲染 */
+function renderFullLibrary() {
+  const container = document.getElementById('full-library');
+  container.innerHTML = Object.values(COLOR_DB).map(g => `
+    <div style="margin-bottom:2.5rem">
+      <div style="font-size:0.67rem;letter-spacing:0.22em;color:var(--muted);border-bottom:1px solid rgba(196,168,130,.25);padding-bottom:6px;margin-bottom:1.2rem">
+        ${g.label} · ${g.desc}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px">
+        ${g.colors.map(c => `
+          <div style="width:155px;border-radius:3px;overflow:hidden;border:1px solid rgba(0,0,0,.06);background:white">
+            <div style="height:80px;background:${c.hex};position:relative">
+              <span style="position:absolute;bottom:6px;right:6px;font-family:monospace;font-size:0.58rem;background:rgba(255,255,255,.7);color:#666;padding:2px 5px;border-radius:2px">${c.id}</span>
+            </div>
+            <div style="padding:10px 12px 12px">
+              <div style="font-family:var(--serif);font-size:1rem;color:var(--ink)">${c.poem}</div>
+              <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.1em;margin:1px 0 5px">${c.id.toUpperCase()}</div>
+              <div style="font-family:monospace;font-size:0.7rem;color:#aaa;margin-bottom:6px">${c.hex}</div>
+              <div style="font-size:0.67rem;color:#bbb;line-height:1.6;font-style:italic;border-top:1px solid rgba(196,168,130,.2);padding-top:5px">${c.verse}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function toggleReport() {
+  const sec = document.getElementById('hidden-report-section');
+  const btn = document.getElementById('report-toggle-btn');
+  const showing = sec.style.display !== 'none';
+  sec.style.display = showing ? 'none' : 'block';
+  btn.textContent = showing ? '✦ 查看完整色彩命定報告' : '✦ 收起完整報告';
+  if (!showing) sec.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function copyReport() {
+  const el = document.getElementById('printable-report');
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✓ 已複製';
+    setTimeout(() => btn.textContent = '複製報告文字', 2000);
+  }).catch(() => {
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  });
+}
+
+function buildPrintableReport(p, group) {
+  // Build audience analysis section based on selectedAges + brandIndustry
+  const AGE_LABELS = { z:'Z世代(18–25歲)', mill:'千禧世代(26–35歲)', x:'X世代(36–50歲)', boomer:'熟齡(51歲以上)', all:'全年齡層' };
+  const ageNames = selectedAges.map(id => AGE_LABELS[id]||id).join('、') || '未填寫';
+
+  const AGE_INSIGHTS = {
+    z:     { color:'#e63946', title:'Z 世代（18–25 歲）', desc:'Z 世代是視覺原生代，對高飽和度、強對比、以及「有態度」的色彩語言有強烈偏好。你的品牌色彩需要在 3 秒內完成視覺溝通，並在社群平台的縮略圖尺寸中仍具有清晰的識別度。建議在品牌主視覺中保持色彩的強烈存在感，同時在文案與版型設計上引入當代感，避免讓色彩落入「復古懷舊」的誤讀區間。' },
+    mill:  { color:'#d4a853', title:'千禧世代（26–35 歲）', desc:'千禧世代是目前消費能力最強且品味最多元的客群。他們經歷過審美的多次迭代，對「有質感但不說教」的品牌語言最敏感。你的色彩策略需要在「個性」與「信賴感」之間精確平衡——太個性化會讓他們覺得「適合年輕人但不適合我」，太保守又會讓他們覺得「無聊」。建議在主色基礎上，每季引入一個「時代感輔色」保持視覺的當代感。' },
+    x:     { color:'#6b7fa3', title:'X 世代（36–50 歲）', desc:'X 世代在色彩偏好上傾向沉穩、有底蘊、不誇張。他們對「顯得用力過猛」的品牌視覺有天然的排斥感，但同時對高質感的設計細節有極強的感知力。你的品牌色彩應強調「深度」而非「衝擊力」——精準的配色比飽和度更重要，印刷品的紙張與工藝選擇對這個客群的品牌感知影響尤其顯著。' },
+    boomer:{ color:'#3d3530', title:'熟齡客群（51 歲以上）', desc:'熟齡客群在色彩感知上偏好高對比度（易讀性）與沉穩溫暖的色調，對過度「設計感」有一定的距離感，但對「品質感」極度敏感。建議在品牌視覺中強調清晰的視覺層次與高對比度的文字搭配，同時在色彩選擇上傾向有「歲月感」的中低飽和暖色系。特別注意：這個客群的口碑行銷效果是所有年齡層中最高的，一旦建立信任，轉介紹率極強。' },
+    all:   { color:'#7a8c78', title:'全年齡層受眾', desc:'服務全年齡層受眾意味著你的色彩策略需要兼顧「有吸引力」與「不排他」兩個看似矛盾的目標。建議採用「中性色系為主、年齡友善為輔」的策略：主色選擇中等飽和度、中等明度的色調（你的命定色正處於這個安全區間），在不同年齡層的觸點（社群 vs 印刷品 vs 線下空間）使用不同的色彩強度版本，而非在所有場合使用同一套視覺語言。' },
+  };
+
+  let audienceHTML = '';
+  if (selectedAges.length > 0 && !selectedAges.includes('all')) {
+    const insightList = selectedAges.map(id => AGE_INSIGHTS[id]).filter(Boolean);
+    audienceHTML = insightList.map(ins => `
+      <div style="border-left:3px solid ${ins.color};padding:10px 0 10px 14px;margin-bottom:12px">
+        <div style="font-size:.78rem;font-weight:500;color:#3d3530;margin-bottom:4px">${ins.title}</div>
+        <div style="font-size:.78rem;color:#7a6e68;line-height:1.8">${ins.desc}</div>
+      </div>`).join('');
+  } else if (selectedAges.includes('all')) {
+    const ins = AGE_INSIGHTS['all'];
+    audienceHTML = `<div style="border-left:3px solid ${ins.color};padding:10px 0 10px 14px">
+      <div style="font-size:.78rem;font-weight:500;color:#3d3530;margin-bottom:4px">${ins.title}</div>
+      <div style="font-size:.78rem;color:#7a6e68;line-height:1.8">${ins.desc}</div>
+    </div>`;
+  } else {
+    audienceHTML = '<div style="font-size:.78rem;color:#bbb">受眾年齡層未填寫</div>';
+  }
+
+  const container = document.getElementById('printable-report');
+  const pairings  = p.pairings || [];
+  const profileReport = p.reportText || '';
+  const ts = new Date().toLocaleString('zh-TW', { timeZone:'Asia/Taipei' });
+
+  const sep  = '<hr style="border:none;border-top:1px solid rgba(196,168,130,.3);margin:1.4rem 0">';
+  const h2   = t => `<h3 style="font-family:'Cormorant Garamond','Noto Serif TC',serif;font-size:1.05rem;font-weight:400;color:#3d3530;letter-spacing:0.08em;margin-bottom:.6rem">${t}</h3>`;
+  const small= t => `<p style="font-size:0.72rem;color:#c4a882;letter-spacing:0.18em;margin-bottom:.3rem">${t}</p>`;
+
+  /* 色卡區 */
+  const swatchBar = group.colors.map(c =>
+    `<div title="${c.poem} ${c.hex}" style="flex:1;background:${c.hex};position:relative">
+       <span style="position:absolute;bottom:3px;left:50%;transform:translateX(-50%);font-size:7px;color:${isColorDark(c.hex)?'rgba(255,255,255,.85)':'rgba(0,0,0,.6)'};white-space:nowrap;letter-spacing:.04em">${c.poem}</span>
+     </div>`
+  ).join('');
+
+  const swatchCards = group.colors.map(c =>
+    `<div style="width:calc(14.28% - 6px);min-width:80px;border:1px solid rgba(196,168,130,.2);border-radius:3px;overflow:hidden;background:white">
+       <div style="height:60px;background:${c.hex}"></div>
+       <div style="padding:6px 8px">
+         <div style="font-family:'Cormorant Garamond',serif;font-size:.9rem;color:#3d3530">${c.poem}</div>
+         <div style="font-size:.6rem;color:#bbb;letter-spacing:.06em;text-transform:uppercase">${c.id}</div>
+         <div style="font-family:monospace;font-size:.65rem;color:#aaa">${c.hex}</div>
+         <div style="font-size:.62rem;color:#ccc;font-style:italic;margin-top:3px;line-height:1.4">${c.verse}</div>
+       </div>
+     </div>`
+  ).join('');
+
+  /* 配色建議 */
+  const pairingHTML = pairings.map((pr,i) => {
+    const swatches = pr.colors.map(c =>
+      `<div style="flex:1;height:36px;background:${c}"></div>`
+    ).join('');
+    const chips = pr.colors.map(c =>
+      `<span style="font-family:monospace;font-size:.65rem;background:#f5f0e8;padding:2px 6px;border-radius:2px;margin-right:4px">${c}</span>`
+    ).join('');
+    return `<div style="border:1px solid rgba(196,168,130,.18);border-radius:3px;overflow:hidden;margin-bottom:10px">
+      <div style="display:flex">${swatches}</div>
+      <div style="padding:10px 14px">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:.92rem;color:#3d3530">${pr.name}
+          <span style="font-size:.68rem;color:#f0a89e;letter-spacing:.1em;margin-left:6px">${pr.mood}</span>
+        </div>
+        <div style="font-size:.76rem;color:#c4a882;line-height:1.7;margin-top:3px">${pr.desc}</div>
+        <div style="margin-top:6px">${chips}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  /* 深度報告文字 */
+  const reportFormatted = (profileReport||'').split('\n').join('<br>');
+
+  container.innerHTML = `
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:1.5rem">
+      <div style="width:56px;height:56px;border-radius:50%;background:${p.hex};flex-shrink:0"></div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#3d3530">${p.heading}</div>
+        <div style="font-size:.75rem;color:#c4a882;letter-spacing:.12em;margin-top:2px">${p.hex} · ${p.poem} · ${group.label}</div>
+      </div>
+    </div>
+    <div style="font-size:.72rem;color:#bbb;letter-spacing:.12em;margin-bottom:.5rem">報告產出時間：${ts}</div>
+    <div style="font-size:.72rem;color:#bbb;letter-spacing:.12em;margin-bottom:.3rem">品牌產業：<span style="color:#3d3530">${brandIndustry||'未填寫'}</span></div>
+    <div style="font-size:.72rem;color:#bbb;letter-spacing:.12em;margin-bottom:1.5rem">品牌受眾：<span style="color:#3d3530">${ageNames}</span></div>
+    ${sep}
+    ${small('VERSHE 色彩即詩 · 命定色群調色盤')}
+    ${h2(group.label + ' — ' + group.desc)}
+    <div style="display:flex;height:44px;border-radius:3px;overflow:hidden;margin-bottom:1rem">${swatchBar}</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.5rem">${swatchCards}</div>
+    ${sep}
+    ${small('心理分析')}
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:.5rem">
+      ${(p.traits||[]).map(t =>
+        `<div style="border:1px solid rgba(196,168,130,.18);border-radius:3px;padding:10px 12px">
+           <div style="font-size:.65rem;color:#c4a882;letter-spacing:.15em">${t.label}</div>
+           <div style="font-family:'Cormorant Garamond',serif;font-size:.95rem;color:#3d3530;margin-top:2px">${t.value}</div>
+         </div>`
+      ).join('')}
+    </div>
+    ${sep}
+    ${small('六組命定配色建議')}
+    <div style="margin-bottom:.5rem">${pairingHTML}</div>
+    ${sep}
+    ${small('受眾色彩感知分析')}
+    <h3 style="font-family:'Cormorant Garamond','Noto Serif TC',serif;font-size:1.05rem;font-weight:400;color:#3d3530;letter-spacing:.08em;margin-bottom:.8rem">根據你的品牌受眾，色彩應用的特別建議</h3>
+    <div style="margin-bottom:.5rem">${audienceHTML}</div>
+    ${sep}
+    ${small('品牌色彩命定深度報告')}
+    <div style="line-height:2;color:#3d3530;font-size:.82rem">${reportFormatted}</div>
+    ${sep}
+    <div style="font-size:.68rem;color:#bbb;text-align:center;letter-spacing:.15em">
+      © Vershe 色彩即詩 · Pola's Living · polasliving@gmail.com
+    </div>`;
+}
+
+function restartQuiz() { startQuiz(); }
+function isColorDark(hex) {
+  const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+  return (r*299+g*587+b*114)/1000 < 128;
+}
+</script>
+</body>
+</html>
